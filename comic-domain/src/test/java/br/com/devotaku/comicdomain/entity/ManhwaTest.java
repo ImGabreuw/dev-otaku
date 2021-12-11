@@ -3,6 +3,7 @@ package br.com.devotaku.comicdomain.entity;
 import br.com.devotaku.comicdomain.entity.builder.ManhwaBuilder;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
+import br.com.devotaku.comicdomain.entity.value.object.Identifier;
 import br.com.devotaku.shared.validation.exception.ValidationException;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ class ManhwaTest {
     @Test
     void shouldCreateManhwa() {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Tales Of Demons And Gods";
         Author[] authors = new Author[]{new Author("Mad Snail")};
         Genre[] genres = {MARTIAL_ARTS, ADVENTURE, SHOUNEN, SUPERNATURAL};
@@ -34,6 +36,7 @@ class ManhwaTest {
 
         // when
         Manhwa underTestManhwa = ManhwaBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeName)
                 .authors(authors)
@@ -44,6 +47,7 @@ class ManhwaTest {
                 .build();
 
         // then
+        assertThat(underTestManhwa.getId()).isEqualTo(id);
         assertThat(underTestManhwa.getTitle()).isEqualTo(title);
         assertThat(underTestManhwa.getAuthors()).containsExactly(authors);
         assertThat(underTestManhwa.getGenres()).containsExactly(genres);
@@ -58,6 +62,7 @@ class ManhwaTest {
     @ValueSource(strings = " ")
     void shouldThrowValidationExceptionWhenCreateManhwaBecauseTitleIsNullOrEmptyOrBlank(String title) {
         // given
+        Identifier id = new Identifier(1L);
         Author author = new Author("Mad Snail");
         Genre[] genres = {MARTIAL_ARTS, ADVENTURE, SHOUNEN, SUPERNATURAL};
         String description = "Nie Li, o mais poderoso Espiritualista Demoníaco e estando no topo do mundo marcial, perde sua vida durante a batalha com o Imperador Sábio e as seis bestas de nível divino, e sua alma volta ao passado para quando ele tinha 13 anos. Embora ele seja o mais fraco em sua classe, com o talento mais baixo no reino da alma Vermelho – o mais fraco dos reinos – com a ajuda de seu vasto conhecimento acumulado na sua vida passada, cresce mais rápido do que todos.Agora, ele irá tentar proteger a cidade que no futuro será invadida pelas bestas e que acabou sendo destruída, assim como sua amada, seus amigos e sua família que morreram pelo ataque das mesmas, e destruir a família Sagrada que abandonaram seus deveres e traíram a cidade em sua vida passada.";
@@ -67,6 +72,7 @@ class ManhwaTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTestManhwa = () -> ManhwaBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeName)
                 .authors(author)
@@ -86,6 +92,7 @@ class ManhwaTest {
     @ParameterizedTest
     void shouldThrowValidationExceptionWhenCreateManhwaBecauseAuthorsIsNullOrHasLessThanOne(List<Author> authors) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Tales Of Demons And Gods";
         Genre[] genres = {MARTIAL_ARTS, ADVENTURE, SHOUNEN, SUPERNATURAL};
         String description = "Nie Li, o mais poderoso Espiritualista Demoníaco e estando no topo do mundo marcial, perde sua vida durante a batalha com o Imperador Sábio e as seis bestas de nível divino, e sua alma volta ao passado para quando ele tinha 13 anos. Embora ele seja o mais fraco em sua classe, com o talento mais baixo no reino da alma Vermelho – o mais fraco dos reinos – com a ajuda de seu vasto conhecimento acumulado na sua vida passada, cresce mais rápido do que todos.Agora, ele irá tentar proteger a cidade que no futuro será invadida pelas bestas e que acabou sendo destruída, assim como sua amada, seus amigos e sua família que morreram pelo ataque das mesmas, e destruir a família Sagrada que abandonaram seus deveres e traíram a cidade em sua vida passada.";
@@ -95,6 +102,7 @@ class ManhwaTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTestManhwa = () -> ManhwaBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeName)
                 .authors(authors)
@@ -114,6 +122,7 @@ class ManhwaTest {
     @ParameterizedTest
     void shouldThrowValidationExceptionWhenCreateManhwaBecauseGenresIsNullOrHasLessThanOne(List<Genre> genres) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Tales Of Demons And Gods";
         Author[] authors = new Author[]{new Author("Mad Snail")};
         String description = "Nie Li, o mais poderoso Espiritualista Demoníaco e estando no topo do mundo marcial, perde sua vida durante a batalha com o Imperador Sábio e as seis bestas de nível divino, e sua alma volta ao passado para quando ele tinha 13 anos. Embora ele seja o mais fraco em sua classe, com o talento mais baixo no reino da alma Vermelho – o mais fraco dos reinos – com a ajuda de seu vasto conhecimento acumulado na sua vida passada, cresce mais rápido do que todos.Agora, ele irá tentar proteger a cidade que no futuro será invadida pelas bestas e que acabou sendo destruída, assim como sua amada, seus amigos e sua família que morreram pelo ataque das mesmas, e destruir a família Sagrada que abandonaram seus deveres e traíram a cidade em sua vida passada.";
@@ -123,6 +132,7 @@ class ManhwaTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTestManhwa = () -> ManhwaBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeName)
                 .authors(authors)
@@ -142,6 +152,7 @@ class ManhwaTest {
     @ParameterizedTest
     void shouldThrowValidationExceptionWhenCreateManhwaBecauseDescriptionIsNullOrEmptyOrBlank(String description) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Tales Of Demons And Gods";
         Author[] authors = new Author[]{new Author("Mad Snail")};
         Genre[] genres = {MARTIAL_ARTS, ADVENTURE, SHOUNEN, SUPERNATURAL};
@@ -151,6 +162,7 @@ class ManhwaTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTestManhwa = () -> ManhwaBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeName)
                 .authors(authors)
@@ -170,6 +182,7 @@ class ManhwaTest {
     @ParameterizedTest
     void shouldThrowValidationExceptionWhenCreateManhwaBecauseStatusInNull(Status status) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Tales Of Demons And Gods";
         Author[] authors = new Author[]{new Author("Mad Snail")};
         Genre[] genres = {MARTIAL_ARTS, ADVENTURE, SHOUNEN, SUPERNATURAL};
@@ -179,6 +192,7 @@ class ManhwaTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTestManhwa = () -> ManhwaBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeName)
                 .authors(authors)
@@ -198,6 +212,7 @@ class ManhwaTest {
     @ParameterizedTest
     void shouldThrowValidationExceptionWhenCreateManhwaBecauseScoreHasMoreThan2IntegerAndFractionOrIsLessThan0orIsGraderThan10(Double score) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Tales Of Demons And Gods";
         Author[] authors = new Author[]{new Author("Mad Snail")};
         Genre[] genres = {MARTIAL_ARTS, ADVENTURE, SHOUNEN, SUPERNATURAL};
@@ -207,6 +222,7 @@ class ManhwaTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTestManhwa = () -> ManhwaBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeName)
                 .authors(authors)
