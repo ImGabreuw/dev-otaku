@@ -3,6 +3,7 @@ package br.com.devotaku.comicdomain.entity;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
+import br.com.devotaku.shared.number.NumberHelper;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,13 +11,16 @@ import lombok.Setter;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.random.RandomGenerator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
 @NoArgsConstructor(access = PROTECTED)
 @Data
-public abstract sealed class Comic implements Cloneable permits Manga, Manhwa, WebToon {
+public abstract sealed class Comic implements Cloneable, Comparable<Comic> permits Manga, Manhwa, WebToon {
 
     @NotNull(message = "O campo Id é obrigatório")
     protected Identifier id;
@@ -88,6 +92,21 @@ public abstract sealed class Comic implements Cloneable permits Manga, Manhwa, W
     public boolean hasTitleOrAlternativeNames(String mangaName) {
         return this.title.equalsIgnoreCase(mangaName) ||
                 this.alternativeNames.stream().anyMatch(alternativeName -> alternativeName.name().equalsIgnoreCase(mangaName));
+    }
+
+    public static <T extends Comic> List<T> generateRandomScore(T baseEntity, long limit) {
+        RandomGenerator generator = RandomGenerator.getDefault();
+
+        return Stream.iterate(baseEntity, entity -> {
+                    Comic clone = entity.clone();
+                    clone.setScore(
+                            NumberHelper.formatWith2Digits(generator.nextDouble(10.00))
+                    );
+
+                    return (T) clone;
+                })
+                .limit(limit)
+                .collect(Collectors.toList());
     }
 
 }

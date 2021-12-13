@@ -24,7 +24,7 @@ class FindAllUseCaseTest {
         int pageNumber = 0;
         int pageSize = 20;
 
-        PageInfo pageInfo = new PageInfo(pageNumber, pageSize);
+        PageInfo pageInfo = PageInfo.create(pageNumber, pageSize);
         FindAllUseCase.InputValues input = new FindAllUseCase.InputValues(pageInfo);
 
         // when
@@ -34,7 +34,7 @@ class FindAllUseCaseTest {
         assertThat(output.mangas()).hasSize(pageSize);
         assertThat(output.mangas())
                 .map(Manga::getId)
-                .containsExactlyElementsOf(Identifier.generateSequenceFrom(pageInfo));
+                .containsExactlyElementsOf(Identifier.generateIDSequenceFrom(pageInfo));
     }
 
 }

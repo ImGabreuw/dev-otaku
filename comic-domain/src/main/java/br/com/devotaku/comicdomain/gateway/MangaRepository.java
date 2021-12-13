@@ -15,4 +15,6 @@ public interface MangaRepository {
 
     Optional<Manga> findByTitleOrAlternativesName(String mangaName);
 
+    List<Manga> fetchTopUseCase(PageInfo pageInfo);
+
 }
