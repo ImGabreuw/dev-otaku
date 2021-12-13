@@ -19,9 +19,4 @@ public final class WebToon extends Comic implements SelfValidation<WebToon> {
         validate(this);
     }
 
-    @Override
-    public int compareTo(Comic comic) {
-        return Double.compare(getScore(), comic.getScore());
-    }
-
 }

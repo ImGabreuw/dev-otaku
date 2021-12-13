@@ -15,9 +15,4 @@ public final class Manga extends Comic implements SelfValidation<Manga> {
         validate(this);
     }
 
-    @Override
-    public int compareTo(Comic comic) {
-        return Double.compare(getScore(), comic.getScore());
-    }
-
 }

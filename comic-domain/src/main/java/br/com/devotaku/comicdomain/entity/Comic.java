@@ -109,4 +109,9 @@ public abstract sealed class Comic implements Cloneable, Comparable<Comic> permi
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public int compareTo(Comic comic) {
+        return Double.compare(getScore(), comic.getScore());
+    }
+
 }
