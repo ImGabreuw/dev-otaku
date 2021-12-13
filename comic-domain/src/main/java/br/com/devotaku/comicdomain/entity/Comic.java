@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static br.com.devotaku.comicdomain.entity.Status.FINISHED;
+import static br.com.devotaku.comicdomain.entity.Status.PUBLISHING;
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -101,6 +102,10 @@ public abstract sealed class Comic implements Cloneable, Comparable<Comic> permi
 
     public boolean isFinished() {
         return status == FINISHED;
+    }
+
+    public boolean isPublishing() {
+        return status == PUBLISHING;
     }
 
     public boolean hasTitleOrAlternativeNames(String mangaName) {

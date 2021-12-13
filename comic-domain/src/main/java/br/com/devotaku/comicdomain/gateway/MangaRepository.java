@@ -19,4 +19,6 @@ public interface MangaRepository {
 
     List<Manga> findAllByFinished(PageInfo pageInfo);
 
+    List<Manga> findAllByPublishing(PageInfo pageInfo);
+
 }

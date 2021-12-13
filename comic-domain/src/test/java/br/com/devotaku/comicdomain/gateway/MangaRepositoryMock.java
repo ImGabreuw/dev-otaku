@@ -75,4 +75,12 @@ public class MangaRepositoryMock implements MangaRepository {
                 .toList();
     }
 
+    @Override
+    public List<Manga> findAllByPublishing(PageInfo pageInfo) {
+        return Stream
+                .generate(() -> (Manga) baseManga.clone())
+                .limit(pageInfo.pageSize())
+                .toList();
+    }
+
 }
