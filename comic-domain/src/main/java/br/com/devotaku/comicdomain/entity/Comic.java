@@ -15,6 +15,7 @@ import java.util.random.RandomGenerator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static br.com.devotaku.comicdomain.entity.Status.FINISHED;
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -89,6 +90,19 @@ public abstract sealed class Comic implements Cloneable, Comparable<Comic> permi
         }
     }
 
+    @Override
+    public int compareTo(Comic comic) {
+        return Double.compare(getScore(), comic.getScore());
+    }
+
+    public void finished() {
+        status = FINISHED;
+    }
+
+    public boolean isFinished() {
+        return status == FINISHED;
+    }
+
     public boolean hasTitleOrAlternativeNames(String mangaName) {
         return this.title.equalsIgnoreCase(mangaName) ||
                 this.alternativeNames.stream().anyMatch(alternativeName -> alternativeName.name().equalsIgnoreCase(mangaName));
@@ -107,11 +121,6 @@ public abstract sealed class Comic implements Cloneable, Comparable<Comic> permi
                 })
                 .limit(limit)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public int compareTo(Comic comic) {
-        return Double.compare(getScore(), comic.getScore());
     }
 
 }

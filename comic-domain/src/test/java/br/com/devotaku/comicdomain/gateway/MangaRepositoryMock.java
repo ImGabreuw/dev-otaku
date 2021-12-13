@@ -7,7 +7,6 @@ import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
-import org.springframework.util.comparator.Comparators;
 
 import java.util.Comparator;
 import java.util.List;
@@ -63,6 +62,17 @@ public class MangaRepositoryMock implements MangaRepository {
         mangas.sort(Comparator.comparing(Comic::getScore).reversed());
 
         return mangas.subList(pageInfo.start() - 1, pageInfo.end());
+    }
+
+    @Override
+    public List<Manga> findAllByFinished(PageInfo pageInfo) {
+        return Stream.generate(() -> {
+                    Manga clone = (Manga) baseManga.clone();
+                    clone.finished();
+                    return clone;
+                })
+                .limit(pageInfo.pageSize())
+                .toList();
     }
 
 }

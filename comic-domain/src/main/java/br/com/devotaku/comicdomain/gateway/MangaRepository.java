@@ -17,4 +17,6 @@ public interface MangaRepository {
 
     List<Manga> fetchTopUseCase(PageInfo pageInfo);
 
+    List<Manga> findAllByFinished(PageInfo pageInfo);
+
 }
