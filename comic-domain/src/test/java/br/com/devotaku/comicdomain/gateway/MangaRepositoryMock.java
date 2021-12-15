@@ -7,6 +7,7 @@ import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
+import br.com.devotaku.comicdomain.gateway.repository.MangaRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -47,7 +48,7 @@ public class MangaRepositoryMock implements MangaRepository {
 
     @Override
     public Optional<Manga> findByTitleOrAlternativesName(String mangaName) {
-        if (!baseManga.hasTitleOrAlternativeNames(mangaName)) {
+        if (!baseManga.hasTitleOrAlternativeNamesEqualsTo(mangaName)) {
             return Optional.empty();
         }
 

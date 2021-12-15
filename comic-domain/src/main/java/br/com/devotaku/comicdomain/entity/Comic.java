@@ -108,7 +108,7 @@ public abstract sealed class Comic implements Cloneable, Comparable<Comic> permi
         return status == PUBLISHING;
     }
 
-    public boolean hasTitleOrAlternativeNames(String mangaName) {
+    public boolean hasTitleOrAlternativeNamesEqualsTo(String mangaName) {
         return this.title.equalsIgnoreCase(mangaName) ||
                 this.alternativeNames.stream().anyMatch(alternativeName -> alternativeName.name().equalsIgnoreCase(mangaName));
     }

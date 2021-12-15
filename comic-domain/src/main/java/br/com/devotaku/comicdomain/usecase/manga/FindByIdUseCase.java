@@ -2,7 +2,7 @@ package br.com.devotaku.comicdomain.usecase.manga;
 
 import br.com.devotaku.comicdomain.entity.Manga;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
-import br.com.devotaku.comicdomain.gateway.MangaRepository;
+import br.com.devotaku.comicdomain.gateway.repository.MangaRepository;
 import br.com.devotaku.comicdomain.usecase.UseCase;
 import br.com.devotaku.comicdomain.usecase.exception.EntityNotFoundException;
 import br.com.devotaku.comicdomain.usecase.exception.Field;
