@@ -16,7 +16,7 @@ public class EntityNotFoundException extends DomainException {
         ));
     }
 
-    public static String formatFields(Class<? extends Comic> entityClass, Field... fields) {
+    private static String formatFields(Class<? extends Comic> entityClass, Field... fields) {
         return Arrays.stream(fields)
                 .map(field -> ReflectionHelper.validateFieldName(entityClass, field.name()) + "=" + field.value())
                 .collect(Collectors.joining(" e/ou "));
