@@ -1,4 +1,4 @@
-package br.com.devotaku.comicdomain.gateway;
+package br.com.devotaku.comicdomain.gateway.repository;
 
 import br.com.devotaku.comicdomain.entity.Comic;
 import br.com.devotaku.comicdomain.entity.Manga;
