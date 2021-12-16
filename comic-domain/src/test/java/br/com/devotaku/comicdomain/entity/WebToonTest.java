@@ -51,7 +51,7 @@ class WebToonTest {
         assertThat(underTestWebToon.getDescription()).isEqualTo(description);
         assertThat(underTestWebToon.getStatus()).isEqualTo(status);
         assertThat(underTestWebToon.getScore()).isEqualTo(score);
-        assertThat(underTestWebToon.getAlternativeNames()).isNull();
+        assertThat(underTestWebToon.getAlternativeNames()).isEmpty();
     }
 
     @ValueSource(strings = " ")

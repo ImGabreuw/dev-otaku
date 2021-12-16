@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.random.RandomGenerator;
 import java.util.stream.Collectors;
@@ -73,9 +74,9 @@ public abstract sealed class Comic implements Cloneable, Comparable<Comic> permi
     protected Comic(Identifier id, String title, List<AlternativeName> alternativeNames, List<Author> authors, List<Genre> genres, String description, Status status, Double score) {
         this.id = id;
         this.title = title;
-        this.alternativeNames = alternativeNames;
-        this.authors = authors;
-        this.genres = genres;
+        this.alternativeNames = alternativeNames == null ? new ArrayList<>() : alternativeNames;
+        this.authors = authors == null ? new ArrayList<>() : authors;
+        this.genres = genres == null ? new ArrayList<>() : genres;
         this.description = description;
         this.status = status;
         this.score = score;
