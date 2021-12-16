@@ -1,7 +1,7 @@
 package br.com.devotaku.comicdomain.usecase.manhwa;
 
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
-import br.com.devotaku.comicdomain.gateway.ManhwaRepositoryMock;
+import br.com.devotaku.comicdomain.gateway.repository.ManhwaRepositoryMock;
 import br.com.devotaku.comicdomain.usecase.exception.EntityNotFoundException;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;

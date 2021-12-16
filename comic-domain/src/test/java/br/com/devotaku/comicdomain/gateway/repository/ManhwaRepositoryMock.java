@@ -1,14 +1,12 @@
-package br.com.devotaku.comicdomain.gateway;
+package br.com.devotaku.comicdomain.gateway.repository;
 
 import br.com.devotaku.comicdomain.entity.Comic;
-import br.com.devotaku.comicdomain.entity.Manga;
 import br.com.devotaku.comicdomain.entity.Manhwa;
 import br.com.devotaku.comicdomain.entity.builder.ManhwaBuilder;
 import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
-import br.com.devotaku.comicdomain.gateway.repository.ManhwaRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -16,7 +14,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import static br.com.devotaku.comicdomain.entity.Genre.*;
-import static br.com.devotaku.comicdomain.entity.Genre.SUPERNATURAL;
 import static br.com.devotaku.comicdomain.entity.Status.PUBLISHING;
 
 public class ManhwaRepositoryMock implements ManhwaRepository {
