@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Validar a entidade que implementa a interface {@link SelfValidation}, e em caso de alguma constraint for violada, é lançada uma exceção com o(s) campo(s) violado(s) e suas respectivas mensagens de erro
  *
- * @param <T> A classe da entidade que foi implementada por esta ‘interface’
+ * @param <T> A classe da entidade implementada por esta ‘interface’
  * @author ImGabreuw
  */
 public interface SelfValidation<T> {
