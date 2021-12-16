@@ -1,8 +1,8 @@
-package br.com.devotaku.comicdomain.usecase.manga;
+package br.com.devotaku.comicdomain.usecase.manhwa;
 
-import br.com.devotaku.comicdomain.entity.Manga;
+import br.com.devotaku.comicdomain.entity.Manhwa;
 import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
-import br.com.devotaku.comicdomain.gateway.MangaRepositoryMock;
+import br.com.devotaku.comicdomain.gateway.ManhwaRepositoryMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ class FindAllByPublishingUseCaseTest {
 
     @BeforeEach
     void setUp() {
-        underTestUseCase = new FindAllByPublishingUseCase(new MangaRepositoryMock());
+        underTestUseCase = new FindAllByPublishingUseCase(new ManhwaRepositoryMock());
     }
 
     @Test
@@ -27,8 +27,7 @@ class FindAllByPublishingUseCaseTest {
         FindAllByPublishingUseCase.OutputValues output = underTestUseCase.execute(input);
 
         // then
-        assertThat(output.mangas()).hasSize(pageInfo.pageSize());
-        assertThat(output.mangas()).allMatch(Manga::isPublishing);
+        assertThat(output.manhwas()).hasSize(pageInfo.pageSize());
+        assertThat(output.manhwas()).allMatch(Manhwa::isPublishing);
     }
-
 }
