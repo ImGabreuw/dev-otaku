@@ -3,7 +3,7 @@ package br.com.devotaku.comicdomain.usecase.manhwa;
 import br.com.devotaku.comicdomain.entity.Manhwa;
 import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
-import br.com.devotaku.comicdomain.gateway.repository.ManhwaRepositoryMock;
+import br.com.devotaku.comicdomain.gateway.ManhwaRepositoryMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

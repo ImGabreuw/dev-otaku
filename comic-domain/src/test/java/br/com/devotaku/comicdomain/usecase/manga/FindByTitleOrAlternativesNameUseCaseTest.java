@@ -1,6 +1,6 @@
 package br.com.devotaku.comicdomain.usecase.manga;
 
-import br.com.devotaku.comicdomain.gateway.repository.MangaRepositoryMock;
+import br.com.devotaku.comicdomain.gateway.MangaRepositoryMock;
 import br.com.devotaku.comicdomain.usecase.exception.EntityNotFoundException;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;

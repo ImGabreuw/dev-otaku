@@ -1,4 +1,4 @@
-package br.com.devotaku.comicdomain.gateway.repository;
+package br.com.devotaku.comicdomain.gateway;
 
 import br.com.devotaku.comicdomain.entity.Comic;
 import br.com.devotaku.comicdomain.entity.Manga;
@@ -7,6 +7,7 @@ import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
+import br.com.devotaku.comicdomain.gateway.repository.MangaRepository;
 
 import java.util.Comparator;
 import java.util.List;
