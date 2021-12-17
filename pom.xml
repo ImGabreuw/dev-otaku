@@ -13,6 +13,7 @@
     <modules>
         <module>shared</module>
         <module>comic-domain</module>
+        <module>anime-domain</module>
     </modules>
 
     <groupId>br.com.devotaku</groupId>

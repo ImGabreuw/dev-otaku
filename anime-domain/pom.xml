@@ -9,9 +9,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>comic-domain</artifactId>
-    <name>comic-domain</name>
-    <description>Módulo "comic-domain"</description>
+    <artifactId>anime-domain</artifactId>
+    <name>anime-domain</name>
+    <description>anime-domain</description>
 
     <properties>
         <java.version>17</java.version>
