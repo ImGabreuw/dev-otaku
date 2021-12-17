@@ -6,7 +6,6 @@ import br.com.devotaku.shared.validation.exception.ValidationException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
 /**
@@ -17,11 +16,14 @@ import java.util.Set;
  */
 public interface SelfValidation<T> {
 
-    default void validate(T entity) {
-        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
-        Validator validator = validatorFactory.getValidator();
+    private static Validator getValidator() {
+        return Validation
+                .buildDefaultValidatorFactory()
+                .getValidator();
+    }
 
-        Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
+    default void validate(T entity) {
+        Set<ConstraintViolation<T>> constraintViolations = getValidator().validate(entity);
 
         if (constraintViolations.isEmpty()) return;
 
