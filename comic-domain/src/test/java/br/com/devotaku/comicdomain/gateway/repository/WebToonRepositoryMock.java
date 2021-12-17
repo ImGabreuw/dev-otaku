@@ -3,7 +3,7 @@ package br.com.devotaku.comicdomain.gateway.repository;
 import br.com.devotaku.comicdomain.entity.Comic;
 import br.com.devotaku.comicdomain.entity.WebToon;
 import br.com.devotaku.comicdomain.entity.builder.WebToonBuilder;
-import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
+import br.com.devotaku.shared.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
 
@@ -60,7 +60,7 @@ public class WebToonRepositoryMock implements WebToonRepository {
         List<WebToon> mangas = Comic.generateRandomScore(baseWebToon, limit);
         mangas.sort(Comparator.comparing(Comic::getScore).reversed());
 
-        return mangas.subList(pageInfo.start() - 1, pageInfo.end());
+        return mangas.subList(pageInfo.lastElementPosition() - 1, pageInfo.firstElementPosition());
     }
 
     @Override

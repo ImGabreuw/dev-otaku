@@ -1,7 +1,7 @@
 package br.com.devotaku.comicdomain.entity.value.object;
 
 import br.com.devotaku.comicdomain.entity.Comic;
-import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
+import br.com.devotaku.shared.pagination.PageInfo;
 import lombok.SneakyThrows;
 
 import java.util.List;
@@ -27,12 +27,12 @@ public record Identifier(Long value) {
     }
 
     public static List<Identifier> generateIDSequenceFrom(PageInfo pageInfo) {
-        // interval = 9     interval = 19
+        // pageInterval = 9     pageInterval = 19
         // 1 -> 1 - 10      1 -> 1 - 20 -> 1 * 19 = 19 -> 20 - 19 = 1
-        // 2 -> 11 - 20     2 -> 21 - 40 -> 2 * 19 = 38 -> 40 - 28 = 2 -> Portanto:  (pageNumber + 1) * interval + (pageNumber + 1)
+        // 2 -> 11 - 20     2 -> 21 - 40 -> 2 * 19 = 38 -> 40 - 28 = 2 -> Portanto:  (pageNumber + 1) * pageInterval + (pageNumber + 1)
         // 3 -> 21 - 30     3 -> 41 - 60
         // 4 -> 31 - 40     4 -> 61 - 80
-        return generateIDSequence(pageInfo.start(), pageInfo.end());
+        return generateIDSequence(pageInfo.lastElementPosition(), pageInfo.firstElementPosition());
     }
 
 }

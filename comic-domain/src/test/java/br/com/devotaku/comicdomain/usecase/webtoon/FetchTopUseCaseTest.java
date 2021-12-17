@@ -1,6 +1,6 @@
 package br.com.devotaku.comicdomain.usecase.webtoon;
 
-import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
+import br.com.devotaku.shared.pagination.PageInfo;
 import br.com.devotaku.comicdomain.gateway.repository.WebToonRepositoryMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

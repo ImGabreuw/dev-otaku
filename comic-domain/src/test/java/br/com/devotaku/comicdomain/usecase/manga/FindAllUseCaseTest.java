@@ -1,7 +1,7 @@
 package br.com.devotaku.comicdomain.usecase.manga;
 
 import br.com.devotaku.comicdomain.entity.Manga;
-import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
+import br.com.devotaku.shared.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
 import br.com.devotaku.comicdomain.gateway.repository.MangaRepositoryMock;
 import org.junit.jupiter.api.BeforeEach;

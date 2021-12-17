@@ -3,11 +3,10 @@ package br.com.devotaku.comicdomain.gateway.repository;
 import br.com.devotaku.comicdomain.entity.Comic;
 import br.com.devotaku.comicdomain.entity.Manga;
 import br.com.devotaku.comicdomain.entity.builder.MangaBuilder;
-import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
+import br.com.devotaku.shared.pagination.PageInfo;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
-import br.com.devotaku.comicdomain.gateway.repository.MangaRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -62,7 +61,7 @@ public class MangaRepositoryMock implements MangaRepository {
         List<Manga> mangas = Comic.generateRandomScore(baseManga, limit);
         mangas.sort(Comparator.comparing(Comic::getScore).reversed());
 
-        return mangas.subList(pageInfo.start() - 1, pageInfo.end());
+        return mangas.subList(pageInfo.lastElementPosition() - 1, pageInfo.firstElementPosition());
     }
 
     @Override

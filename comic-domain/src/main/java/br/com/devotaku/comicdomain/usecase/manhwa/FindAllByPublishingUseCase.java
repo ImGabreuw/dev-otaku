@@ -1,7 +1,7 @@
 package br.com.devotaku.comicdomain.usecase.manhwa;
 
 import br.com.devotaku.comicdomain.entity.Manhwa;
-import br.com.devotaku.comicdomain.entity.pagination.PageInfo;
+import br.com.devotaku.shared.pagination.PageInfo;
 import br.com.devotaku.comicdomain.gateway.repository.ManhwaRepository;
 import br.com.devotaku.comicdomain.usecase.UseCase;
 
