@@ -33,10 +33,6 @@ class StudioTest {
 
         // then
         assertThatThrownBy(underTestStudio)
-                .isInstanceOf(ValidationException.class)
-                .hasMessage(String.format(
-                        "A classe Studio teve suas constraints violadas. [Field[fieldName=name, message=não deve estar em branco, value=%s]]",
-                        name
-                ));
+                .isInstanceOf(ValidationException.class);
     }
 }

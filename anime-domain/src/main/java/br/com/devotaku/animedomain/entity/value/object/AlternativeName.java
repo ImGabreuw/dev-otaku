@@ -8,7 +8,7 @@ public record AlternativeName(
         @NotBlank String name
 ) implements SelfValidation<AlternativeName> {
 
-    public AlternativeName(@NotBlank String name) {
+    public AlternativeName(String name) {
         this.name = name;
         validate(this);
     }

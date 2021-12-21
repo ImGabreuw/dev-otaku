@@ -8,7 +8,7 @@ public record Producer(
         @NotBlank String name
 ) implements SelfValidation<Producer> {
 
-    public Producer(@NotBlank String name) {
+    public Producer(String name) {
         this.name = name;
         validate(this);
     }

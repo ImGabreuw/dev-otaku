@@ -33,11 +33,7 @@ class ProducerTest {
 
         // then
         assertThatThrownBy(underTestProducer)
-                .isInstanceOf(ValidationException.class)
-                .hasMessage(String.format(
-                        "A classe Producer teve suas constraints violadas. [Field[fieldName=name, message=não deve estar em branco, value=%s]]",
-                        name
-                ));
+                .isInstanceOf(ValidationException.class);
     }
 
 }
