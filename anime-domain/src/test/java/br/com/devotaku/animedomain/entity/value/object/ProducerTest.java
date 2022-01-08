@@ -1,5 +1,6 @@
 package br.com.devotaku.animedomain.entity.value.object;
 
+import br.com.devotaku.animedomain.utils.NullEmptyAndBlankSource;
 import br.com.devotaku.shared.validation.exception.ValidationException;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
@@ -18,22 +19,20 @@ class ProducerTest {
         String name = "Mainichi Broadcasting System";
 
         // when
-        Producer underTestProducer = new Producer(name);
+        Producer underTest = new Producer(name);
 
         // then
-        assertThat(underTestProducer.name()).isEqualTo(name);
+        assertThat(underTest.name()).isEqualTo(name);
     }
 
     @ParameterizedTest
-    @NullAndEmptySource
-    @ValueSource(strings = "   ")
+    @NullEmptyAndBlankSource
     void shouldThrowValidationExceptionWhenCreateProducerBecauseNameIsInvalid(String name) {
         // when
-        ThrowableAssert.ThrowingCallable underTestProducer = () -> new Producer(name);
+        ThrowableAssert.ThrowingCallable underTest = () -> new Producer(name);
 
         // then
-        assertThatThrownBy(underTestProducer)
-                .isInstanceOf(ValidationException.class);
+        assertThatThrownBy(underTest).isInstanceOf(ValidationException.class);
     }
 
 }

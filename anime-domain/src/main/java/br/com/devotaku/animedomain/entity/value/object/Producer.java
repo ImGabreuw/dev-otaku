@@ -5,11 +5,12 @@ import br.com.devotaku.shared.validation.SelfValidation;
 import javax.validation.constraints.NotBlank;
 
 public record Producer(
-        @NotBlank String name
+        @NotBlank(message = "O campo 'name' é obrigatório") String name
 ) implements SelfValidation<Producer> {
 
     public Producer(String name) {
         this.name = name;
+
         validate(this);
     }
 

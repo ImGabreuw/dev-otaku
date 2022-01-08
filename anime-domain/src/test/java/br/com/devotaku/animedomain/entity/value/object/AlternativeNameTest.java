@@ -5,21 +5,19 @@ import br.com.devotaku.shared.validation.exception.ValidationException;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class StudioTest {
+class AlternativeNameTest {
 
     @Test
-    void shouldCreateStudio() {
+    void shouldCreateAlternativeName() {
         // given
-        String name = "MAPPA";
+        String name = "Sorcery Fight";
 
         // when
-        Studio underTest = new Studio(name);
+        AlternativeName underTest = new AlternativeName(name);
 
         // then
         assertThat(underTest.name()).isEqualTo(name);
@@ -27,11 +25,12 @@ class StudioTest {
 
     @ParameterizedTest
     @NullEmptyAndBlankSource
-    void shouldThrowValidationExceptionWhenCreateStudioBecauseNameIsInvalid(String name) {
+    void shouldThrowValidationExceptionWhenCreateAlternativeNameBecauseNameIsInvalid(String name) {
         // when
-        ThrowableAssert.ThrowingCallable underTest = () -> new Studio(name);
+        ThrowableAssert.ThrowingCallable underTest = () -> new AlternativeName(name);
 
         // then
         assertThatThrownBy(underTest).isInstanceOf(ValidationException.class);
     }
+
 }

@@ -17,42 +17,45 @@ import java.util.Set;
 @Data
 public class Anime implements SelfValidation<Anime> {
 
-    @NotBlank
+    @NotBlank(message = "O campo 'title' é obrigatório")
     private String title;
 
     private Set<AlternativeName> alternativeNames;
 
-    @NotBlank
+    @NotBlank(message = "O campo 'description' é obrigatório")
     private String description;
 
-    @NotNull
-    @DecimalMin("0.00")
-    @DecimalMax("10.00")
+    @NotNull(message = "O campo 'score' é obrigatório")
+    @DecimalMin(value = "0.00", message = "O campo 'score' deve conter um número maior ou igual a '{1}'")
+    @DecimalMax(value = "10.00", message = "O campo 'score' deve conter um número menor ou igual a '{1}'")
     private Double score;
 
-    @NotNull
-    @Positive
+    @NotNull(message = "O campo 'episodes' é obrigatório")
+    @Positive(message = "O campo 'episodes' deve conter um número maior ou igual a 1")
     private Integer episodes;
 
-    @NotNull
+    @NotNull(message = "O campo 'status' é obrigatório")
     private Status status;
 
-    @NotNull
+    @NotNull(message = "O campo 'launchedAt' é obrigatório")
     private LocalDate launchedAt;
 
-    @NotNull
+    @NotNull(message = "O campo 'endedAt' é obrigatório")
     private LocalDate endedAt;
 
-    @Size(min = 1)
+    @NotNull(message = "O campo 'producers' é obrigatório")
+    @Size(min = 1, message = "O campo 'score' deve conter pelo menos {1} produtor")
     private Set<Producer> producers;
 
-    @Size(min = 1)
+    @NotNull(message = "O campo 'studios' é obrigatório")
+    @Size(min = 1, message = "O campo 'studios' deve conter pelo menos {1} estúdio")
     private Set<Studio> studios;
 
-    @NotNull
+    @NotNull(message = "O campo 'source' é obrigatório")
     private SourceType source;
 
-    @Size(min = 1)
+    @NotNull(message = "O campo 'genres' é obrigatório")
+    @Size(min = 1, message = "O campo 'genres' deve conter pelo menos {1} gênero")
     private List<Genre> genres;
 
     public Anime(String title, Set<AlternativeName> alternativeNames, String description, Double score, Integer episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<Producer> producers, Set<Studio> studios, SourceType source, List<Genre> genres) {

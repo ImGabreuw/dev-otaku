@@ -5,7 +5,7 @@ import br.com.devotaku.shared.validation.SelfValidation;
 import javax.validation.constraints.NotBlank;
 
 public record AlternativeName(
-        @NotBlank String name
+        @NotBlank(message = "O campo 'name' é obrigatório") String name
 ) implements SelfValidation<AlternativeName> {
 
     public AlternativeName(String name) {
