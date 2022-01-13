@@ -5,6 +5,7 @@ import br.com.devotaku.animedomain.entity.enums.Genre;
 import br.com.devotaku.animedomain.entity.enums.SourceType;
 import br.com.devotaku.animedomain.entity.enums.Status;
 import br.com.devotaku.animedomain.entity.value.object.AlternativeName;
+import br.com.devotaku.animedomain.entity.value.object.Identifier;
 import br.com.devotaku.animedomain.entity.value.object.Producer;
 import br.com.devotaku.animedomain.entity.value.object.Studio;
 import br.com.devotaku.animedomain.utils.NullEmptyAndBlankSource;
@@ -35,6 +36,7 @@ class AnimeTest {
     @Test
     void shouldCreateAnime() {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -59,6 +61,7 @@ class AnimeTest {
 
         // when
         Anime underTest = AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -74,6 +77,7 @@ class AnimeTest {
                 .build();
 
         // then
+        assertThat(underTest.getId()).isEqualTo(id);
         assertThat(underTest.getTitle()).isEqualTo(title);
         assertThat(underTest.getAlternativeNames()).contains(alternativeNames);
         assertThat(underTest.getDescription()).isEqualTo(description);
@@ -92,6 +96,7 @@ class AnimeTest {
     @NullEmptyAndBlankSource
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseTitleIsInvalid(String title) {
         // given
+        Identifier id = new Identifier(1L);
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
                 new AlternativeName("Sorcery Fight")
@@ -115,6 +120,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -137,6 +143,7 @@ class AnimeTest {
     @NullEmptyAndBlankSource
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseDescriptionIsInvalid(String description) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -160,6 +167,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -182,6 +190,7 @@ class AnimeTest {
     @ValueSource(doubles = {-1, 11})
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseScoreIsInvalid(Double score) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -205,6 +214,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -228,6 +238,7 @@ class AnimeTest {
     @ValueSource(ints = {-1, 0})
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseEpisodesIsInvalid(Integer episodes) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -251,6 +262,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -273,6 +285,7 @@ class AnimeTest {
     @NullSource
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseStatusIsInvalid(Status status) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -296,6 +309,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -318,6 +332,7 @@ class AnimeTest {
     @NullSource
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseLaunchedAtIsInvalid(LocalDate launchedAt) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -341,6 +356,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -363,6 +379,7 @@ class AnimeTest {
     @NullSource
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseEndedAtIsInvalid(LocalDate endedAt) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -386,6 +403,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -408,6 +426,7 @@ class AnimeTest {
     @ProducerArguments
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseProducersIsInvalid(Set<Producer> producers) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -425,6 +444,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -447,6 +467,7 @@ class AnimeTest {
     @StudioArguments
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseStudiosIsInvalid(Set<Studio> studios) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -470,6 +491,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -492,6 +514,7 @@ class AnimeTest {
     @NullSource
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseSourceIsInvalid(SourceType source) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -515,6 +538,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)
@@ -537,6 +561,7 @@ class AnimeTest {
     @GenreArguments
     void shouldThrowValidationExceptionWhenCreateAnimeBecauseGenresIsInvalid(List<Genre> genres) {
         // given
+        Identifier id = new Identifier(1L);
         String title = "Jujutsu Kaisen";
         AlternativeName[] alternativeNames = {
                 new AlternativeName("呪術廻戦"),
@@ -560,6 +585,7 @@ class AnimeTest {
 
         // when
         ThrowableAssert.ThrowingCallable underTest = () -> AnimeBuilder.builder()
+                .id(id)
                 .title(title)
                 .alternativeNames(alternativeNames)
                 .description(description)

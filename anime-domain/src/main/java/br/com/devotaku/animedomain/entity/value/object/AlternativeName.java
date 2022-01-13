@@ -10,6 +10,7 @@ public record AlternativeName(
 
     public AlternativeName(String name) {
         this.name = name;
+
         validate(this);
     }
 

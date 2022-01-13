@@ -1,6 +1,6 @@
-package br.com.devotaku.comicdomain.entity.value.object;
+package br.com.devotaku.animedomain.entity.value.object;
 
-import br.com.devotaku.comicdomain.entity.Comic;
+import br.com.devotaku.animedomain.entity.Anime;
 import br.com.devotaku.shared.pagination.PageInfo;
 import lombok.SneakyThrows;
 
@@ -11,8 +11,8 @@ public record Identifier(Long value) {
 
     // FIXME: 09/01/2022 Remove duplicated
     @SneakyThrows
-    public static <T extends Comic> T incrementEntityID(T entity) {
-        Comic clone = entity.clone();
+    public static <T extends Anime & Cloneable> T increment(T entity) {
+        Anime clone = entity.clone();
         clone.setId(new Identifier(entity.getId().value() + 1L));
 
         return (T) clone;

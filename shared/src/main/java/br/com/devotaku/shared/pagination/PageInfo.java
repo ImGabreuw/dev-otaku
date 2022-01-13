@@ -1,17 +1,39 @@
 package br.com.devotaku.shared.pagination;
 
+import br.com.devotaku.shared.validation.SelfValidation;
+import lombok.Data;
+
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+
 /**
  * <i>Wrapper class</i> para armazenar informações de paginação.
  *
  * @author ImGabreuw
  */
 public record PageInfo(
+        @PositiveOrZero(message = "O campo 'pageNumber' deve conter um valor maior ou igual a 0")
         int pageNumber,
+
+        @Positive(message = "O campo 'pageNumber' deve conter um valor maior do que 0")
         int pageSize,
+
         int pageInterval,
+
         int firstElementPosition,
+
         int lastElementPosition
-) {
+) implements SelfValidation<PageInfo> {
+
+    public PageInfo(int pageNumber, int pageSize, int pageInterval, int firstElementPosition, int lastElementPosition) {
+        this.pageNumber = pageNumber;
+        this.pageSize = pageSize;
+        this.pageInterval = pageInterval;
+        this.firstElementPosition = firstElementPosition;
+        this.lastElementPosition = lastElementPosition;
+
+        validate(this);
+    }
 
     /**
      * <i>Factory method</i> para criar uma instância de {@link PageInfo} com as configurações padrão.

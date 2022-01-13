@@ -5,6 +5,7 @@ import br.com.devotaku.animedomain.entity.enums.Genre;
 import br.com.devotaku.animedomain.entity.enums.SourceType;
 import br.com.devotaku.animedomain.entity.enums.Status;
 import br.com.devotaku.animedomain.entity.value.object.AlternativeName;
+import br.com.devotaku.animedomain.entity.value.object.Identifier;
 import br.com.devotaku.animedomain.entity.value.object.Producer;
 import br.com.devotaku.animedomain.entity.value.object.Studio;
 import br.com.devotaku.shared.date.DateParser;
@@ -17,6 +18,8 @@ import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)
 public class AnimeBuilder {
+
+    private Identifier id;
 
     private String title;
 
@@ -44,6 +47,16 @@ public class AnimeBuilder {
 
     public static AnimeBuilder builder() {
         return new AnimeBuilder();
+    }
+
+    public AnimeBuilder id(Long id) {
+        this.id = new Identifier(id);
+        return this;
+    }
+
+    public AnimeBuilder id(Identifier id) {
+        this.id = id;
+        return this;
     }
 
     public AnimeBuilder title(String title) {
@@ -137,7 +150,7 @@ public class AnimeBuilder {
     }
 
     public Anime build() {
-        return new Anime(title, alternativeNames, description, score, episodes, status, launchedAt, endedAt, producers, studios, source, genres);
+        return new Anime(id, title, alternativeNames, description, score, episodes, status, launchedAt, endedAt, producers, studios, source, genres);
     }
 
 }
