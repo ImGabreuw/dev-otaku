@@ -3,7 +3,6 @@ package br.com.devotaku.animedomain.usecase;
 import br.com.devotaku.animedomain.entity.value.object.Identifier;
 import br.com.devotaku.animedomain.ports.repository.AnimeRepositoryMock;
 import br.com.devotaku.animedomain.usecase.execption.EntityNotFoundException;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
