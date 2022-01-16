@@ -2,8 +2,8 @@ package br.com.devotaku.comicdomain.usecase.manhwa;
 
 import br.com.devotaku.comicdomain.entity.Manhwa;
 import br.com.devotaku.shared.pagination.PageInfo;
-import br.com.devotaku.comicdomain.gateway.repository.ManhwaRepository;
-import br.com.devotaku.comicdomain.usecase.UseCase;
+import br.com.devotaku.comicdomain.ports.repository.ManhwaRepository;
+import br.com.devotaku.shared.usecase.UseCase;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public record FindAllByPublishingUseCase(
 
     @Override
     public OutputValues execute(InputValues input) {
-        PageInfo pageInfo = input.pageInfo();
+        var pageInfo = input.pageInfo();
 
         return new OutputValues(
                 manhwaRepository.findAllByPublishing(pageInfo)

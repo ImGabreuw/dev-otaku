@@ -1,4 +1,4 @@
-package br.com.devotaku.comicdomain.gateway.repository;
+package br.com.devotaku.comicdomain.ports.repository;
 
 import br.com.devotaku.comicdomain.entity.Comic;
 import br.com.devotaku.comicdomain.entity.WebToon;
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static br.com.devotaku.comicdomain.entity.Genre.*;
-import static br.com.devotaku.comicdomain.entity.Status.PUBLISHING;
+import static br.com.devotaku.comicdomain.entity.enums.Genre.*;
+import static br.com.devotaku.comicdomain.entity.enums.Status.PUBLISHING;
 
 public class WebToonRepositoryMock implements WebToonRepository {
 

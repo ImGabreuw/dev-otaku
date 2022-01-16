@@ -1,5 +1,7 @@
 package br.com.devotaku.comicdomain.entity;
 
+import br.com.devotaku.comicdomain.entity.enums.Genre;
+import br.com.devotaku.comicdomain.entity.enums.Status;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;

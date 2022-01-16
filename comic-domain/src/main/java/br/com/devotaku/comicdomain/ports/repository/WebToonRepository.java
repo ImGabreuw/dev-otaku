@@ -1,4 +1,4 @@
-package br.com.devotaku.comicdomain.gateway.repository;
+package br.com.devotaku.comicdomain.ports.repository;
 
 import br.com.devotaku.comicdomain.entity.WebToon;
 import br.com.devotaku.shared.pagination.PageInfo;

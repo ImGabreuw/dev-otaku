@@ -1,8 +1,8 @@
 package br.com.devotaku.comicdomain.entity.builder;
 
-import br.com.devotaku.comicdomain.entity.Genre;
+import br.com.devotaku.comicdomain.entity.enums.Genre;
 import br.com.devotaku.comicdomain.entity.Manhwa;
-import br.com.devotaku.comicdomain.entity.Status;
+import br.com.devotaku.comicdomain.entity.enums.Status;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 import java.util.Arrays;
 import java.util.List;
 
-import static br.com.devotaku.comicdomain.entity.Status.FINISHED;
-import static br.com.devotaku.comicdomain.entity.Status.PUBLISHING;
+import static br.com.devotaku.comicdomain.entity.enums.Status.FINISHED;
+import static br.com.devotaku.comicdomain.entity.enums.Status.PUBLISHING;
 import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)

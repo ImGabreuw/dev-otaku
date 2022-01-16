@@ -1,5 +1,7 @@
 package br.com.devotaku.comicdomain.entity;
 
+import br.com.devotaku.comicdomain.entity.enums.Genre;
+import br.com.devotaku.comicdomain.entity.enums.Status;
 import br.com.devotaku.comicdomain.entity.value.object.AlternativeName;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
@@ -16,8 +18,8 @@ import java.util.random.RandomGenerator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static br.com.devotaku.comicdomain.entity.Status.FINISHED;
-import static br.com.devotaku.comicdomain.entity.Status.PUBLISHING;
+import static br.com.devotaku.comicdomain.entity.enums.Status.FINISHED;
+import static br.com.devotaku.comicdomain.entity.enums.Status.PUBLISHING;
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -25,46 +27,46 @@ import static lombok.AccessLevel.PROTECTED;
 @Data
 public abstract sealed class Comic implements Cloneable, Comparable<Comic> permits Manga, Manhwa, WebToon {
 
-    @NotNull(message = "O campo Id é obrigatório")
+    @NotNull(message = "O campo 'Id' é obrigatório")
     protected Identifier id;
 
-    @NotBlank(message = "O campo Title não pode estar em branco")
+    @NotBlank(message = "O campo 'Title' não pode estar em branco")
     protected String title;
 
     protected List<AlternativeName> alternativeNames;
 
-    @NotNull(message = "O campo Authors é obrigatório")
+    @NotNull(message = "O campo 'Authors' é obrigatório")
     @Size(
             min = 1,
-            message = "O campo Authors precisar ter pelo menos 1 autor"
+            message = "O campo 'Authors' precisar ter pelo menos 1 autor"
     )
     protected List<Author> authors;
 
-    @NotNull(message = "O campo Genres é obrigatório")
+    @NotNull(message = "O campo 'Genres' é obrigatório")
     @Size(
             min = 1,
-            message = "O campo Genres precisar ter pelo menos 1 gênero"
+            message = "O campo 'Genres' precisar ter pelo menos 1 gênero"
     )
     protected List<Genre> genres;
 
-    @NotBlank(message = "O campo Description não pode estar em branco")
+    @NotBlank(message = "O campo 'Description' não pode estar em branco")
     protected String description;
 
-    @NotNull(message = "O campo Title é obrigatório")
+    @NotNull(message = "O campo 'Title' é obrigatório")
     protected Status status;
 
     @Digits(
             integer = 2,
             fraction = 2,
-            message = "O campo Score precisar estar entre 0.00 e 10.00"
+            message = "O campo 'Score' precisar estar entre 0.00 e 10.00"
     )
     @DecimalMin(
             value = "0.00",
-            message = "O campo Score precisar estar entre 0.00 e 10.00"
+            message = "O campo 'Score' precisar estar entre 0.00 e 10.00"
     )
     @DecimalMax(
             value = "10.00",
-            message = "O campo Score precisar estar entre 0.00 e 10.00"
+            message = "O campo 'Score' precisar estar entre 0.00 e 10.00"
     )
     protected Double score;
 
@@ -111,7 +113,7 @@ public abstract sealed class Comic implements Cloneable, Comparable<Comic> permi
 
     public boolean hasTitleOrAlternativeNamesEqualsTo(String comicName) {
         return this.title.equalsIgnoreCase(comicName) ||
-                this.alternativeNames.stream().anyMatch(alternativeName -> alternativeName.name().equalsIgnoreCase(comicName));
+                this.alternativeNames.stream().anyMatch(alternativeName -> alternativeName.value().equalsIgnoreCase(comicName));
     }
 
     public static <T extends Comic> List<T> generateRandomScore(T baseEntity, long limit) {

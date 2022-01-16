@@ -1,6 +1,8 @@
 package br.com.devotaku.comicdomain.entity;
 
 import br.com.devotaku.comicdomain.entity.builder.WebToonBuilder;
+import br.com.devotaku.comicdomain.entity.enums.Genre;
+import br.com.devotaku.comicdomain.entity.enums.Status;
 import br.com.devotaku.comicdomain.entity.value.object.Author;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
 import br.com.devotaku.shared.validation.exception.ValidationException;
@@ -14,8 +16,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static br.com.devotaku.comicdomain.entity.Genre.*;
-import static br.com.devotaku.comicdomain.entity.Status.PUBLISHING;
+import static br.com.devotaku.comicdomain.entity.enums.Genre.*;
+import static br.com.devotaku.comicdomain.entity.enums.Status.PUBLISHING;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

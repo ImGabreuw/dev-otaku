@@ -6,11 +6,11 @@ import javax.validation.constraints.NotBlank;
 
 public record AlternativeName(
         @NotBlank(message = "O campo Name não pode estar em branco")
-        String name
+        String value
 ) implements SelfValidation<AlternativeName> {
 
-    public AlternativeName(String name) {
-        this.name = name;
+    public AlternativeName(String value) {
+        this.value = value;
 
         validate(this);
     }

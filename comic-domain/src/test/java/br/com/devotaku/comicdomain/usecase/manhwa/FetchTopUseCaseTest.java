@@ -1,7 +1,7 @@
 package br.com.devotaku.comicdomain.usecase.manhwa;
 
 import br.com.devotaku.shared.pagination.PageInfo;
-import br.com.devotaku.comicdomain.gateway.repository.ManhwaRepositoryMock;
+import br.com.devotaku.comicdomain.ports.repository.ManhwaRepositoryMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package br.com.devotaku.comicdomain.entity;
+package br.com.devotaku.comicdomain.entity.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

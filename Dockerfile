@@ -2,7 +2,7 @@ FROM maven:3.6-alpine AS dependencies
 
 WORKDIR /app
 
-RUN POM_FILES=$(find . -name pom.xml); export POM_FILES
+RUN POM_FILES=$(find . -value pom.xml); export POM_FILES
 COPY $POM_FILES ./
 RUN mvn -B -e -C org.apache.maven.plugins:maven-dependency-plugin:3.2.0:go-offline
 

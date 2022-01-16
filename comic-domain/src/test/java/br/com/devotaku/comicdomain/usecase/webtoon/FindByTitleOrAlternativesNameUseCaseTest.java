@@ -1,6 +1,6 @@
 package br.com.devotaku.comicdomain.usecase.webtoon;
 
-import br.com.devotaku.comicdomain.gateway.repository.WebToonRepositoryMock;
+import br.com.devotaku.comicdomain.ports.repository.WebToonRepositoryMock;
 import br.com.devotaku.comicdomain.usecase.exception.EntityNotFoundException;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;

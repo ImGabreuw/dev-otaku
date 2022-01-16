@@ -2,10 +2,10 @@ package br.com.devotaku.comicdomain.usecase.manga;
 
 import br.com.devotaku.comicdomain.entity.Manga;
 import br.com.devotaku.comicdomain.entity.value.object.Identifier;
-import br.com.devotaku.comicdomain.gateway.repository.MangaRepository;
-import br.com.devotaku.comicdomain.usecase.UseCase;
+import br.com.devotaku.comicdomain.ports.repository.MangaRepository;
 import br.com.devotaku.comicdomain.usecase.exception.EntityNotFoundException;
 import br.com.devotaku.comicdomain.usecase.exception.Field;
+import br.com.devotaku.shared.usecase.UseCase;
 
 public record FindByIdUseCase(
         MangaRepository mangaRepository
@@ -13,7 +13,7 @@ public record FindByIdUseCase(
 
     @Override
     public OutputValues execute(InputValues input) {
-        Identifier id = input.identifier();
+        var id = input.identifier();
 
         return mangaRepository.findById(id)
                 .map(OutputValues::new)

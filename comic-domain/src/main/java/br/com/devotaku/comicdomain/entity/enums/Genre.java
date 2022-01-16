@@ -1,4 +1,4 @@
-package br.com.devotaku.comicdomain.entity;
+package br.com.devotaku.comicdomain.entity.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public enum Genre {
     ROMANCE("Anime whose story is about two people who each want [sometimes unconciously] to win or keep the love of the other. This kind of anime might also fall in the \"Ecchi\" category, while \"Romance\" and \"Hentai\" generally contradict each other."),
     SAMURAI("Anime whose main character(s) are samurai, the old, but not forgotten, warrior cast of medieval Japan."),
     SCHOOL("Anime which are mainly set in a school environment."),
-    SCI_FI("Anime where the setting is based on the technology and tools of a scientifically imaginable world. The majority of technologies presented are not available in the present day and therefore the Science is Fiction. This incorporates any possible place (planets, space, underwater, you name it)."),
+    SCI_FI("Anime where the setting is based on the technology and tools of a scientifically imaginable world. The majority of technologies presented are not available in the present day and therefore the Science is Fiction. This incorporates any possible place (planets, space, underwater, you value it)."),
     SEINEN("No description available."),
     SHOUJO("Anime that are targeted towards the \"young girl\" market. Usually the story is from the point of view of a girl and deals with romance, drama or magic."),
     SHOUJO_AI("Anime whose central theme is about a relationship (or strong affection, not usually sexual) between two girls or women. Shoujo Ai literally means \"girl love\"."),

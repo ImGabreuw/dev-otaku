@@ -1,10 +1,10 @@
 package br.com.devotaku.comicdomain.usecase.webtoon;
 
 import br.com.devotaku.comicdomain.entity.WebToon;
-import br.com.devotaku.comicdomain.gateway.repository.WebToonRepository;
-import br.com.devotaku.comicdomain.usecase.UseCase;
+import br.com.devotaku.comicdomain.ports.repository.WebToonRepository;
 import br.com.devotaku.comicdomain.usecase.exception.EntityNotFoundException;
 import br.com.devotaku.comicdomain.usecase.exception.Field;
+import br.com.devotaku.shared.usecase.UseCase;
 
 public record FindByTitleOrAlternativesNameUseCase(
         WebToonRepository webToonRepository
@@ -12,7 +12,7 @@ public record FindByTitleOrAlternativesNameUseCase(
 
     @Override
     public OutputValues execute(InputValues input) {
-        String webToonName = input.webToonName();
+        var webToonName = input.webToonName();
 
         return webToonRepository
                 .findByTitleOrAlternativesName(webToonName)

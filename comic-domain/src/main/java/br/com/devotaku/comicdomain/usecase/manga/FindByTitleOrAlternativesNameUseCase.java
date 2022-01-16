@@ -1,10 +1,10 @@
 package br.com.devotaku.comicdomain.usecase.manga;
 
 import br.com.devotaku.comicdomain.entity.Manga;
-import br.com.devotaku.comicdomain.gateway.repository.MangaRepository;
-import br.com.devotaku.comicdomain.usecase.UseCase;
+import br.com.devotaku.comicdomain.ports.repository.MangaRepository;
 import br.com.devotaku.comicdomain.usecase.exception.EntityNotFoundException;
 import br.com.devotaku.comicdomain.usecase.exception.Field;
+import br.com.devotaku.shared.usecase.UseCase;
 
 public record FindByTitleOrAlternativesNameUseCase(
         MangaRepository mangaRepository
@@ -12,9 +12,10 @@ public record FindByTitleOrAlternativesNameUseCase(
 
     @Override
     public OutputValues execute(InputValues input) {
-        String mangaName = input.mangaName();
+        var mangaName = input.mangaName();
 
-        return mangaRepository.findByTitleOrAlternativesName(mangaName)
+        return mangaRepository
+                .findByTitleOrAlternativesName(mangaName)
                 .map(OutputValues::new)
                 .orElseThrow(() -> new EntityNotFoundException(
                         Manga.class,
