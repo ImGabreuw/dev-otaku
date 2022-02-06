@@ -29,7 +29,7 @@ class ImageTest {
         assertThatThrownBy(() -> new Image(imageUrl))
                 .isInstanceOf(ValidationException.class)
                 .hasMessage(String.format(
-                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'ImageUrl' deve conter uma URL válida, value=%s]]",
+                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'Url' deve conter uma URL válida, value=%s]]",
                         imageUrl
                 ));
     }
@@ -43,7 +43,7 @@ class ImageTest {
         assertThatThrownBy(() -> new Image(imageUrl))
                 .isInstanceOf(ValidationException.class)
                 .hasMessage(String.format(
-                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'ImageUrl' deve conter uma URL válida, value=%s]]",
+                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'Url' deve conter uma URL válida, value=%s]]",
                         imageUrl
                 ));
     }

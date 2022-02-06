@@ -2,7 +2,6 @@ package br.com.devotaku.userdomain.entities.value.objects;
 
 import br.com.devotaku.shared.validation.SelfValidation;
 import br.com.devotaku.shared.validation.annotations.Score;
-import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.NotBlank;
 
@@ -13,24 +12,34 @@ public record AnimeInfoSummary(
         @Score
         Double score,
 
-        @NotBlank(message = "O campo 'ImageUrl' é obrigatório")
-        @URL(message = "O campo 'ImageUrl' deve conter uma URL válida")
-        String imageUrl,
+        Image image,
 
         Progress progress
 ) implements SelfValidation<AnimeInfoSummary> {
 
-    public AnimeInfoSummary(String title, Double score, String imageUrl, Progress progress) {
+    public AnimeInfoSummary(String title, Double score, Image image, Progress progress) {
         this.title = title;
         this.score = score;
-        this.imageUrl = imageUrl;
+        this.image = image;
         this.progress = progress;
 
         validate(this);
     }
 
-    public static AnimeInfoSummary create(String title, Double score, String imageUri, Integer seen, Integer total) {
-        return new AnimeInfoSummary(title, score, imageUri, new Progress(seen, total));
+    public static AnimeInfoSummary create(String title, Double score, String imageUrl, Integer seen, Integer total) {
+        return new AnimeInfoSummary(title, score, new Image(imageUrl), new Progress(seen, total));
+    }
+
+    public String getImageUrl() {
+        return image.url();
+    }
+
+    public Integer getEpisodesSeen() {
+        return progress.seen();
+    }
+
+    public Integer getTotalEpisodes() {
+        return progress().total();
     }
 
 }

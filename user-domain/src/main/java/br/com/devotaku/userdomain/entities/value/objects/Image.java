@@ -6,9 +6,9 @@ import org.hibernate.validator.constraints.URL;
 import javax.validation.constraints.NotBlank;
 
 public record Image(
-        @NotBlank(message = "O campo 'ImageUrl' é obrigatório")
+        @NotBlank(message = "O campo 'Url' é obrigatório")
         @URL(
-                message = "O campo 'ImageUrl' deve conter uma URL válida",
+                message = "O campo 'Url' deve conter uma URL válida",
                 protocol = "https",
                 host = "cdn.myanimelist.net"
         )

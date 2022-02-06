@@ -29,9 +29,9 @@ class AnimeInfoSummaryTest {
         // then
         assertThat(underTest.title()).isEqualTo(title);
         assertThat(underTest.score()).isEqualTo(score);
-        assertThat(underTest.imageUrl()).isEqualTo(imageUrl);
-        assertThat(underTest.progress().seen()).isEqualTo(episodesSeen);
-        assertThat(underTest.progress().total()).isEqualTo(totalEpisodes);
+        assertThat(underTest.getImageUrl()).isEqualTo(imageUrl);
+        assertThat(underTest.getEpisodesSeen()).isEqualTo(episodesSeen);
+        assertThat(underTest.getTotalEpisodes()).isEqualTo(totalEpisodes);
     }
 
     @ParameterizedTest
@@ -104,8 +104,8 @@ class AnimeInfoSummaryTest {
                 totalEpisodes
         ))
                 .isInstanceOf(ValidationException.class)
-                .hasMessageStartingWith(String.format(
-                        "A classe AnimeInfoSummary teve suas constraints violadas. [Field[fieldName=imageUrl, message=O campo 'ImageUrl' é obrigatório, value=%s]",
+                .hasMessage(String.format(
+                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'Url' é obrigatório, value=%s]]",
                         imageUrl
                 ));
     }
@@ -130,7 +130,7 @@ class AnimeInfoSummaryTest {
         ))
                 .isInstanceOf(ValidationException.class)
                 .hasMessage(String.format(
-                        "A classe AnimeInfoSummary teve suas constraints violadas. [Field[fieldName=imageUrl, message=O campo 'ImageUrl' deve conter uma URL válida, value=%s]]",
+                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'Url' deve conter uma URL válida, value=%s]]",
                         imageUrl
                 ));
     }
@@ -155,7 +155,7 @@ class AnimeInfoSummaryTest {
         ))
                 .isInstanceOf(ValidationException.class)
                 .hasMessage(String.format(
-                        "A classe AnimeInfoSummary teve suas constraints violadas. [Field[fieldName=imageUrl, message=O campo 'ImageUrl' deve conter uma URL válida, value=%s], Field[fieldName=imageUrl, message=O campo 'ImageUrl' é obrigatório, value=%s]]",
+                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'Url' é obrigatório, value=%s], Field[fieldName=url, message=O campo 'Url' deve conter uma URL válida, value=%s]]",
                         imageUrl,
                         imageUrl
                 ));
