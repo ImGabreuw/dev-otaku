@@ -154,9 +154,12 @@ class AnimeInfoSummaryTest {
                 totalEpisodes
         ))
                 .isInstanceOf(ValidationException.class)
-                .hasMessage(String.format(
-                        "A classe Image teve suas constraints violadas. [Field[fieldName=url, message=O campo 'Url' é obrigatório, value=%s], Field[fieldName=url, message=O campo 'Url' deve conter uma URL válida, value=%s]]",
-                        imageUrl,
+                .hasMessageContaining(String.format(
+                        "Field[fieldName=url, message=O campo 'Url' é obrigatório, value=%s]",
+                        imageUrl
+                ))
+                .hasMessageContaining(String.format(
+                        "Field[fieldName=url, message=O campo 'Url' deve conter uma URL válida, value=%s]",
                         imageUrl
                 ));
     }
