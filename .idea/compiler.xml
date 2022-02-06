@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="comic-domain" />
         <module name="shared" />
+        <module name="user-domain" />
+        <module name="comic-domain" />
         <module name="anime-domain" />
       </profile>
     </annotationProcessing>
@@ -25,6 +26,7 @@
       <module name="dev-otaku" options="" />
       <module name="manga-domain" options="-parameters" />
       <module name="shared" options="-parameters" />
+      <module name="user-domain" options="-parameters" />
     </option>
   </component>
 </project>

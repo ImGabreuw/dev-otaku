@@ -1,7 +1,6 @@
 package br.com.devotaku.shared.pagination;
 
 import br.com.devotaku.shared.validation.SelfValidation;
-import lombok.Data;
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
