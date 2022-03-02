@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/comic-domain/pom.xml" />
         <option value="$PROJECT_DIR$/anime-domain/pom.xml" />
         <option value="$PROJECT_DIR$/user-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/mal-api/pom.xml" />
       </list>
     </option>
   </component>

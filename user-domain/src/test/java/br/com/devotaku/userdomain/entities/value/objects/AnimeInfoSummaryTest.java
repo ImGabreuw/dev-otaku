@@ -1,6 +1,7 @@
 package br.com.devotaku.userdomain.entities.value.objects;
 
 import br.com.devotaku.shared.validation.exception.ValidationException;
+import br.com.devotaku.userdomain.entities.AnimeInfoSummary;
 import br.com.devotaku.userdomain.utils.NullEmptyAndBlankSource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,8 +28,8 @@ class AnimeInfoSummaryTest {
         var underTest = AnimeInfoSummary.create(title, score, imageUrl, episodesSeen, totalEpisodes);
 
         // then
-        assertThat(underTest.title()).isEqualTo(title);
-        assertThat(underTest.score()).isEqualTo(score);
+        assertThat(underTest.getTitle()).isEqualTo(title);
+        assertThat(underTest.getScore()).isEqualTo(score);
         assertThat(underTest.getImageUrl()).isEqualTo(imageUrl);
         assertThat(underTest.getEpisodesSeen()).isEqualTo(episodesSeen);
         assertThat(underTest.getTotalEpisodes()).isEqualTo(totalEpisodes);
@@ -54,7 +55,7 @@ class AnimeInfoSummaryTest {
         ))
                 .isInstanceOf(ValidationException.class)
                 .hasMessage(String.format(
-                        "A classe AnimeInfoSummary teve suas constraints violadas. [Field[fieldName=title, message=O campo 'Title' é obrigatório, value=%s]]",
+                        "A classe Title teve suas constraints violadas. [Field[fieldName=value, message=O campo 'Title' é obrigatório, value=%s]]",
                         title
                 ));
     }
@@ -79,7 +80,7 @@ class AnimeInfoSummaryTest {
         ))
                 .isInstanceOf(ValidationException.class)
                 .hasMessage(String.format(
-                        "A classe AnimeInfoSummary teve suas constraints violadas. [Field[fieldName=score, message=O campo 'Score' deve conter um número entre 0.00 e 10.00, value=%s]]",
+                        "A classe Score teve suas constraints violadas. [Field[fieldName=value, message=O campo 'Score' deve conter um número entre 0.00 e 10.00, value=%s]]",
                         score
                 ));
     }

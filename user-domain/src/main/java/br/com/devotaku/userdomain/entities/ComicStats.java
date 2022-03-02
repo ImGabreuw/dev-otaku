@@ -1,7 +1,6 @@
 package br.com.devotaku.userdomain.entities;
 
 import br.com.devotaku.shared.validation.SelfValidation;
-import br.com.devotaku.userdomain.entities.value.objects.ComicInfoSummary;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

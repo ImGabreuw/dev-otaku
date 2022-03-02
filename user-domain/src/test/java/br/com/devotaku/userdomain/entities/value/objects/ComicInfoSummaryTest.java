@@ -1,5 +1,6 @@
 package br.com.devotaku.userdomain.entities.value.objects;
 
+import br.com.devotaku.userdomain.entities.ComicInfoSummary;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,8 +20,8 @@ class ComicInfoSummaryTest {
         var underTest = ComicInfoSummary.create(title, score, imageUrl, chaptersSeen, totalChapters);
 
         // then
-        assertThat(underTest.title()).isEqualTo(title);
-        assertThat(underTest.score()).isEqualTo(score);
+        assertThat(underTest.getTitle()).isEqualTo(title);
+        assertThat(underTest.getScore()).isEqualTo(score);
         assertThat(underTest.getImageUrl()).isEqualTo(imageUrl);
         assertThat(underTest.getChaptersSeen()).isEqualTo(chaptersSeen);
         assertThat(underTest.getTotalChapters()).isEqualTo(totalChapters);

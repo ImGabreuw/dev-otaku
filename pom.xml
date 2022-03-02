@@ -15,6 +15,7 @@
         <module>comic-domain</module>
         <module>anime-domain</module>
         <module>user-domain</module>
+        <module>mal-api</module>
     </modules>
 
     <groupId>br.com.devotaku</groupId>

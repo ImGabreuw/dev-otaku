@@ -1,12 +1,10 @@
 package br.com.devotaku.userdomain.entities;
 
 import br.com.devotaku.shared.validation.SelfValidation;
-import br.com.devotaku.userdomain.entities.value.objects.AnimeInfoSummary;
-import br.com.devotaku.userdomain.entities.value.objects.ComicInfoSummary;
+import br.com.devotaku.userdomain.entities.value.objects.Email;
+import br.com.devotaku.userdomain.entities.value.objects.Name;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,12 +12,9 @@ import java.util.Set;
 @Data
 public class User implements SelfValidation<User> {
 
-    @NotBlank(message = "O campo 'Name' não pode estar em branco")
-    private String name;
+    private Name name;
 
-    @NotNull(message = "O campo 'Login' é obrigatório")
-    @Email(message = "O campo 'Email' deve conter um email válido")
-    private String email;
+    private Email email;
 
     @NotNull(message = "O campo 'ComicStats' é obrigatório")
     private ComicStats comicStats;
@@ -31,7 +26,7 @@ public class User implements SelfValidation<User> {
 
     private final Set<AnimeInfoSummary> animeHistory = new HashSet<>();
 
-    public User(String name, String email, ComicStats comicStats, AnimeStats animeStats) {
+    public User(Name name, Email email, ComicStats comicStats, AnimeStats animeStats) {
         this.name = name;
         this.email = email;
         this.comicStats = comicStats;
@@ -42,8 +37,8 @@ public class User implements SelfValidation<User> {
 
     public static User create(String name, String email) {
         return new User(
-                name,
-                email,
+                new Name(name),
+                new Email(email),
                 new ComicStats(),
                 new AnimeStats()
         );

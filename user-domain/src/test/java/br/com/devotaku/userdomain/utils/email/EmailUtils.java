@@ -42,7 +42,7 @@ public class EmailUtils {
             "1234567890@example.com",
             "email@example-one.com",
             "_______@example.com",
-            "email@example.name",
+            "email@example.value",
             "email@example.museum",
             "email@example.co.jp",
             "あいうえお@example.com",

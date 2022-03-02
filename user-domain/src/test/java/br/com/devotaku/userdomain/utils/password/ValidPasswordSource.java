@@ -1,6 +1,5 @@
 package br.com.devotaku.userdomain.utils.password;
 
-import br.com.devotaku.userdomain.utils.email.ValidEmailArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import java.lang.annotation.Retention;

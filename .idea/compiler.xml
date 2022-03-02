@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mal-api" />
         <module name="shared" />
         <module name="user-domain" />
         <module name="comic-domain" />
@@ -24,6 +25,7 @@
       <module name="comic-core" options="-parameters" />
       <module name="comic-domain" options="-parameters" />
       <module name="dev-otaku" options="" />
+      <module name="mal-api" options="-parameters" />
       <module name="manga-domain" options="-parameters" />
       <module name="shared" options="-parameters" />
       <module name="user-domain" options="-parameters" />
