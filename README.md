@@ -11,3 +11,5 @@ Com o passar dos anos, eu percebi a necessidade de ter alguma forma de gerenciar
 - [Arquitetura](./design/architecture.md)
 
 - [Estrutura do projeto](./design/project-structure.md)
+
+- [Escolhas técnicas](./design/technical-choices.md)
