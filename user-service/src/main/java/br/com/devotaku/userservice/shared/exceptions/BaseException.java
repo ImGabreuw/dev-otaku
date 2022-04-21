@@ -1,4 +1,4 @@
-package br.com.devotaku.userservice.shared.validation.exceptions;
+package br.com.devotaku.userservice.shared.exceptions;
 
 public class BaseException extends RuntimeException {
 
