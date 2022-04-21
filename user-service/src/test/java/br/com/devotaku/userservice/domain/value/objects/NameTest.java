@@ -30,10 +30,7 @@ class NameTest {
     void shouldThrowValidationExceptionWhenCreateNameBecauseIsNullOrBlank(String name) {
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(SelfValidation.ValidationException.class)
-                .hasMessage(String.format(
-                        "The class Name have its constraints violated. [Field[fieldName=value, message=must not be blank, value=%s]]",
-                        name
-                ));
+                .hasMessage("The class Name have its constraints violated. [Field[fieldName=value, message=must not be blank, value=%s]]".formatted(name));
     }
 
     @DisplayName("Should throw ValidationException when create Name because Value is empty")
