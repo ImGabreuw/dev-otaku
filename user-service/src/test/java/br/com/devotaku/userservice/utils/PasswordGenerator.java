@@ -2,9 +2,11 @@ package br.com.devotaku.userservice.utils;
 
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.CharUtils;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class PasswordGenerator {
 
@@ -14,13 +16,13 @@ public class PasswordGenerator {
         if (includeSymbols) {
             var special = new char[]{'!', '@', '#', '$', '%', '^', '&', '*'};
 
-            var characters = FAKER.lorem().characters(minimumLength, maximumLength, true, true);
+            var characters = FAKER.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigits);
 
-            while (!characters.matches("(.*[a-z].*)")
-                    || !characters.matches("(.*[A-Z].*)")
-                    || !characters.matches("(.*\\d.*)")
+            while (!(characters.matches("(.*[a-z].*)")
+                    || characters.matches("(.*[A-Z].*)")
+                    || characters.matches("(.*\\d.*)"))
             ) {
-                characters = FAKER.lorem().characters(minimumLength, maximumLength, true, true);
+                characters = FAKER.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigits);
             }
 
             Map<Character, CharInformation> characterAnalysis = new HashMap<>();
@@ -87,24 +89,25 @@ public class PasswordGenerator {
                                 Integer indexReplaceToSymbol = FAKER.random().nextInt(0, lowercase.size() - 1);
                                 CharInformation charInformation = lowercase.get(indexReplaceToSymbol);
 
-                                password[charInformation.index()] = special[FAKER.random().nextInt(0, special.length)];
+                                password[charInformation.index()] = special[FAKER.random().nextInt(0, special.length - 1)];
                             }
                             case LETTER_IN_UPPERCASE -> {
                                 Integer indexReplaceToSymbol = FAKER.random().nextInt(0, uppercase.size() - 1);
                                 CharInformation charInformation = uppercase.get(indexReplaceToSymbol);
 
-                                password[charInformation.index()] = special[FAKER.random().nextInt(0, special.length)];
+                                password[charInformation.index()] = special[FAKER.random().nextInt(0, special.length - 1)];
                             }
                             case DIGIT -> {
                                 Integer indexReplaceToSymbol = FAKER.random().nextInt(0, digits.size() - 1);
                                 CharInformation charInformation = digits.get(indexReplaceToSymbol);
 
-                                password[charInformation.index()] = special[FAKER.random().nextInt(0, special.length)];
+                                password[charInformation.index()] = special[FAKER.random().nextInt(0, special.length - 1)];
                             }
                         }
                     });
 
-            return StringUtils.join(password, "");
+
+            return new String(password);
         }
 
         return FAKER.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigits);
@@ -115,9 +118,7 @@ public class PasswordGenerator {
     }
 
     public static String generateStrongPassword(int minimumLength, int maximumLength) {
-        return FAKER
-                .internet()
-                .password(minimumLength, maximumLength, true, true, true);
+        return generatePassword(minimumLength, maximumLength, true, true, true);
     }
 
     public static String generatePasswordWithoutUppercase(int minimumLength) {
@@ -125,9 +126,7 @@ public class PasswordGenerator {
     }
 
     public static String generatePasswordWithoutUppercase(int minimumLength, int maximumLength) {
-        return FAKER
-                .internet()
-                .password(minimumLength, maximumLength, false, true, true);
+        return generatePassword(minimumLength, maximumLength, false, true, true);
     }
 
     public static String generatePasswordWithoutLowercase(int minimumLength) {
@@ -135,9 +134,7 @@ public class PasswordGenerator {
     }
 
     public static String generatePasswordWithoutLowercase(int minimumLength, int maximumLength) {
-        return FAKER
-                .internet()
-                .password(minimumLength, maximumLength, true, true, true)
+        return generatePassword(minimumLength, maximumLength, true, true, true)
                 .toUpperCase();
     }
 
@@ -146,9 +143,7 @@ public class PasswordGenerator {
     }
 
     public static String generatePasswordWithoutDigits(int minimumLength, int maximumLength) {
-        return FAKER
-                .internet()
-                .password(minimumLength, maximumLength, true, true, false)
+        return generatePassword(minimumLength, maximumLength, true, true, false)
                 .toUpperCase();
     }
 
@@ -157,10 +152,7 @@ public class PasswordGenerator {
     }
 
     public static String generatePasswordWithoutSymbols(int minimumLength, int maximumLength) {
-        return FAKER
-                .internet()
-                .password(minimumLength, maximumLength, true, false, false)
-                .toUpperCase();
+        return generatePassword(minimumLength, maximumLength, true, false, true);
     }
 
     private enum CharType {
