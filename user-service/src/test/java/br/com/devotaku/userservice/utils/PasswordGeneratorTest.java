@@ -16,7 +16,7 @@ class PasswordGeneratorTest {
 
         Password underTest = new Password(password);
 
-        assertThat(underTest.value()).isEqualTo(Encryptor.DefaultEncryptor.getInstance().encode(password));
+        assertThat(underTest.getValue()).isEqualTo(Encryptor.DefaultEncryptor.getInstance().encode(password));
     }
 
 }

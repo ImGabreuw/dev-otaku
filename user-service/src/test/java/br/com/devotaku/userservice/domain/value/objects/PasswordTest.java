@@ -18,7 +18,7 @@ class PasswordTest {
 
         Password underTest = new Password(password);
 
-        assertThat(underTest.value()).isEqualTo(Encryptor.DefaultEncryptor.getInstance().encode(password));
+        assertThat(underTest.getValue()).isEqualTo(Encryptor.DefaultEncryptor.getInstance().encode(password));
     }
 
     @DisplayName("Should throw ValidationException when create Password because size is smaller than 8")

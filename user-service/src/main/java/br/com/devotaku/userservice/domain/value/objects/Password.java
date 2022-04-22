@@ -6,18 +6,21 @@ import br.com.devotaku.userservice.shared.validation.annotations.ContainsDigits;
 import br.com.devotaku.userservice.shared.validation.annotations.ContainsLowercase;
 import br.com.devotaku.userservice.shared.validation.annotations.ContainsSymbols;
 import br.com.devotaku.userservice.shared.validation.annotations.ContainsUppercase;
+import lombok.Data;
 
 import javax.validation.constraints.Size;
 
-public record Password(
-        @Size(min = 8, max = 30)
-        @ContainsUppercase
-        @ContainsLowercase
-        @ContainsDigits
-        @ContainsSymbols
-        String value,
-        Encryptor encryptor
-) implements SelfValidation<Password> {
+@Data
+public class Password implements SelfValidation<Password> {
+
+    private final Encryptor encryptor;
+
+    @Size(min = 8, max = 30)
+    @ContainsUppercase
+    @ContainsLowercase
+    @ContainsDigits
+    @ContainsSymbols
+    private String value;
 
     public Password(String value) {
         this(value, Encryptor.DefaultEncryptor.getInstance());
@@ -28,11 +31,8 @@ public record Password(
         this.value = value;
 
         validate(this);
-    }
 
-    @Override
-    public String value() {
-        return encryptor.encode(value);
+        this.value = encryptor.encode(value);
     }
 
 }
