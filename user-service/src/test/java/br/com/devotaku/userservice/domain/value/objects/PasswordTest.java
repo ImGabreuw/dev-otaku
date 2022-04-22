@@ -13,7 +13,7 @@ class PasswordTest {
     @DisplayName("Should create Password")
     @Test
     void shouldCreatePassword() {
-        var password = PasswordGenerator.generateStrongPassword(15);
+        var password = PasswordGenerator.generateStrongPassword(12);
 
         Password underTest = new Password(password);
 
