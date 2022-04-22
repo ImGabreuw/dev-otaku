@@ -1,5 +1,6 @@
 package br.com.devotaku.userservice.domain.value.objects;
 
+import br.com.devotaku.userservice.domain.ports.Encryptor;
 import br.com.devotaku.userservice.shared.validation.SelfValidation;
 import br.com.devotaku.userservice.shared.validation.annotations.ContainsDigits;
 import br.com.devotaku.userservice.shared.validation.annotations.ContainsLowercase;
@@ -14,11 +15,24 @@ public record Password(
         @ContainsLowercase
         @ContainsDigits
         @ContainsSymbols
-        String value
+        String value,
+        Encryptor encryptor
 ) implements SelfValidation<Password> {
 
     public Password(String value) {
+        this(value, Encryptor.DefaultEncryptor.getInstance());
+    }
+
+    public Password(String value, Encryptor encryptor) {
+        this.encryptor = encryptor;
         this.value = value;
+
         validate(this);
     }
+
+    @Override
+    public String value() {
+        return encryptor.encode(value);
+    }
+
 }
