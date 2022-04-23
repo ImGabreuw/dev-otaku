@@ -1,9 +1,7 @@
 package br.com.devotaku.animeservice.domain.entities.value.objects;
 
 import br.com.devotaku.animeservice.shared.validation.SelfValidation;
-import br.com.devotaku.animeservice.utils.annotations.IdentifierUtils;
-import com.github.javafaker.Faker;
-import org.junit.jupiter.api.Assertions;
+import br.com.devotaku.animeservice.utils.IdentifierUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,11 +24,11 @@ class IdentifierTest {
     @DisplayName("Should create Identifier")
     @Test
     void shouldCreateIdentifier() {
-        var id = identifierUtils.generateRandomId();
+        long value = identifierUtils.generateIdentifierValue();
 
-        Identifier underTest = new Identifier(id);
+        var underTest = new Identifier(value);
 
-        assertThat(underTest.value()).isEqualTo(id);
+        assertThat(underTest.value()).isEqualTo(value);
     }
 
     @DisplayName("Should throw ValidationException when create Identifier because is null")
