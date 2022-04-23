@@ -49,5 +49,4 @@ class ProducerTest {
                 .hasMessageContaining("fieldName=value, message=size must be between 0 and 255, value=%s".formatted(producer));
     }
 
-
 }
