@@ -44,9 +44,7 @@ public class AlternativeNameUtils {
     }
 
     public Set<AlternativeName> generateAlternativeNameSequence() {
-        return Stream.generate(this::generateAlternativeName)
-                .limit(LIMIT_DEFAULT_VALUE)
-                .collect(Collectors.toSet());
+        return generateAlternativeNameSequence(LIMIT_DEFAULT_VALUE);
     }
 
 }
