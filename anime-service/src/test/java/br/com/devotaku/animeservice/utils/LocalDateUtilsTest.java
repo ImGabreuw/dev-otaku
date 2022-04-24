@@ -1,5 +1,6 @@
 package br.com.devotaku.animeservice.utils;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,22 +12,43 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LocalDateUtilsTest {
 
-    private static LocalDateUtils localDateUtils;
+    private static LocalDateUtils underTest;
 
     @BeforeAll
     static void beforeAll() {
-        localDateUtils = LocalDateUtils.getInstance();
+        underTest = LocalDateUtils.getInstance();
+    }
+
+    @DisplayName("Should generate LocalDate")
+    @Test
+    void shouldGenerateLocalDate() {
+        var to = LocalDate.now();
+        var from = to.minusYears(DATE_RANGE_DEFAULT_VALUE);
+
+        var localDate = underTest.generateLocalDate(from, to);
+
+        assertThat(localDate).isBetween(from, to);
     }
 
     @DisplayName("Should generate LaunchedAt")
     @Test
     void shouldGenerateLaunchedAt() {
-        var launchedAt = localDateUtils.generateLaunchedAt();
+        var to = LocalDate.now();
+        var from = to.minusYears(DATE_RANGE_DEFAULT_VALUE);
 
-        var maximum = LocalDate.now();
-        var minimum = maximum.minusYears(DATE_RANGE_DEFAULT_VALUE);
+        var launchedAt = underTest.generateLaunchedAt();
 
-        assertThat(launchedAt).isBetween(minimum, maximum);
+        assertThat(launchedAt).isBetween(from, to);
+    }
+
+    @DisplayName("Should generate EndedAt")
+    @Test
+    void shouldGenerateEndedAt() {
+        var launchedAt = underTest.generateLaunchedAt();
+        var to = LocalDate.now();
+
+        underTest.generateEndedAt(launchedAt)
+                .ifPresent(endedAt -> assertThat(endedAt).isBetween(launchedAt, to));
     }
 
 }
