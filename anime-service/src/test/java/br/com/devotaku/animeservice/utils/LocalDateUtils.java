@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Optional;
 
 public class LocalDateUtils {
 
@@ -24,13 +25,28 @@ public class LocalDateUtils {
         return instance;
     }
 
-    public LocalDate generateLaunchedAt() {
-        var maximum = LocalDate.now();
-        var minimum = maximum.minusYears(DATE_RANGE_DEFAULT_VALUE);
+    public LocalDate generateLocalDate(LocalDate from, LocalDate to) {
+        var date = faker.date().between(new Date(from.toEpochDay()), new Date(to.toEpochDay()));
 
-        return LocalDate.ofEpochDay(
-                faker.date().between(new Date(minimum.toEpochDay()), new Date(maximum.toEpochDay())).getTime()
-        );
+        return LocalDate.ofEpochDay(date.getTime());
+    }
+
+    public LocalDate generateLaunchedAt() {
+        var to = LocalDate.now();
+        var from = to.minusYears(DATE_RANGE_DEFAULT_VALUE);
+
+        return generateLocalDate(from, to);
+    }
+
+    public Optional<LocalDate> generateEndedAt(LocalDate launchedAt) {
+        LocalDate endedAt = null;
+        Boolean isEnded = faker.random().nextBoolean();
+
+        if (isEnded) {
+            endedAt = generateLocalDate(launchedAt, LocalDate.now());
+        }
+
+        return Optional.ofNullable(endedAt);
     }
 
 }
