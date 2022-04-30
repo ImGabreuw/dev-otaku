@@ -6,6 +6,7 @@ import br.com.devotaku.animeservice.domain.entities.enums.SourceType;
 import br.com.devotaku.animeservice.domain.entities.enums.Status;
 import br.com.devotaku.animeservice.domain.entities.value.objects.*;
 import br.com.devotaku.animeservice.shared.date.DateParser;
+import br.com.devotaku.animeservice.shared.generators.*;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -171,6 +172,24 @@ public class AnimeBuilder {
 
     public Anime build() {
         return new Anime(id, title, alternativeNames, description, score, episodes, status, launchedAt, endedAt, producers, studios, source, genres);
+    }
+
+    public Anime buildMock() {
+        return new Anime(
+                id == null ? IdentifierUtils.getInstance().generateIdentifier() : id,
+                title == null ? TitleUtils.getInstance().generateTitle() : title,
+                alternativeNames == null ? AlternativeNameUtils.getInstance().generateAlternativeNameSequence() : alternativeNames,
+                description == null ? DescriptionUtils.getInstance().generateDescription() : description,
+                score == null ? ScoreUtils.getInstance().generateScore() : score,
+                episodes == null ? EpisodesUtils.getInstance().generateEpisodes() : episodes,
+                status == null ? StatusUtils.getInstance().generateStatus() : status,
+                launchedAt == null ? LocalDateUtils.getInstance().generateLaunchedAt() : launchedAt,
+                endedAt == null ? LocalDateUtils.getInstance().generateEndedAt(launchedAt) : endedAt,
+                producers == null ? ProducerUtils.getInstance().generateProducerSequence() : producers,
+                studios == null ? StudioUtils.getInstance().generateStudioSequence() : studios,
+                source == null ? SourceTypeUtils.getInstance().generateSourceType() : source,
+                genres == null ? GenreUtils.getInstance().generateGenres() : genres
+        );
     }
 
 }
