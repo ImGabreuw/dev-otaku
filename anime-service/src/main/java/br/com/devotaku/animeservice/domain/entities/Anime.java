@@ -6,17 +6,16 @@ import br.com.devotaku.animeservice.domain.entities.enums.Status;
 import br.com.devotaku.animeservice.domain.entities.value.objects.*;
 import br.com.devotaku.animeservice.shared.validation.SelfValidation;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static br.com.devotaku.animeservice.domain.entities.enums.Status.FINISHED;
 import static br.com.devotaku.animeservice.domain.entities.enums.Status.PUBLISHING;
+import static lombok.AccessLevel.PRIVATE;
 
 @Data
 public class Anime implements SelfValidation<Anime> {
@@ -27,6 +26,7 @@ public class Anime implements SelfValidation<Anime> {
     @NotNull
     private Title title;
 
+    @Setter(PRIVATE)
     private Set<AlternativeName> alternativeNames;
 
     @NotNull
@@ -44,17 +44,20 @@ public class Anime implements SelfValidation<Anime> {
     @NotNull
     private LocalDate launchedAt;
 
-    @NotNull
     private LocalDate endedAt;
 
+    @Setter(PRIVATE)
+    @Size(min = 1)
     private Set<Producer> producers;
 
+    @Setter(PRIVATE)
     @Size(min = 1)
     private Set<Studio> studios;
 
     @NotNull
     private SourceType source;
 
+    @Setter(PRIVATE)
     @Size(min = 1)
     private List<Genre> genres;
 
@@ -74,6 +77,10 @@ public class Anime implements SelfValidation<Anime> {
         this.genres = genres == null ? new ArrayList<>() : genres;
 
         validate(this);
+    }
+
+    public Optional<LocalDate> getEndedAt() {
+        return Optional.ofNullable(endedAt);
     }
 
     public boolean hasTitleOrAlternativeNamesEqualsTo(String animeName) {
