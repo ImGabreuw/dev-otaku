@@ -1,10 +1,11 @@
 package br.com.devotaku.animeservice.utils;
 
+import br.com.devotaku.animeservice.shared.generators.ProducerUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static br.com.devotaku.animeservice.utils.ProducerUtils.LIMIT_DEFAULT_VALUE;
+import static br.com.devotaku.animeservice.shared.generators.ProducerUtils.LIMIT_DEFAULT_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ProducerUtilsTest {

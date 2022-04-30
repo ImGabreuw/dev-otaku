@@ -1,10 +1,9 @@
-package br.com.devotaku.animeservice.utils;
+package br.com.devotaku.animeservice.shared.generators;
 
 import com.github.javafaker.Faker;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.Optional;
 
 public class LocalDateUtils {
 
@@ -38,15 +37,15 @@ public class LocalDateUtils {
         return generateLocalDate(from, to);
     }
 
-    public Optional<LocalDate> generateEndedAt(LocalDate launchedAt) {
+    public LocalDate generateEndedAt(LocalDate launchedAt) {
         LocalDate endedAt = null;
-        Boolean isEnded = faker.random().nextBoolean();
+        boolean isEnded = faker.random().nextBoolean();
 
         if (isEnded) {
             endedAt = generateLocalDate(launchedAt, LocalDate.now());
         }
 
-        return Optional.ofNullable(endedAt);
+        return endedAt;
     }
 
 }

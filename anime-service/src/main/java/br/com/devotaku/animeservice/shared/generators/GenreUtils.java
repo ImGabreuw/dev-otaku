@@ -1,4 +1,4 @@
-package br.com.devotaku.animeservice.utils;
+package br.com.devotaku.animeservice.shared.generators;
 
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
 import com.github.javafaker.Faker;

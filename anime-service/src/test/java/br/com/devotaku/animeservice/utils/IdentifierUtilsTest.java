@@ -1,13 +1,13 @@
 package br.com.devotaku.animeservice.utils;
 
 import br.com.devotaku.animeservice.domain.entities.value.objects.Identifier;
+import br.com.devotaku.animeservice.shared.generators.IdentifierUtils;
 import br.com.devotaku.animeservice.shared.validation.SelfValidation;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static br.com.devotaku.animeservice.utils.IdentifierUtils.MAXIMUM_DEFAULT_VALUE;
+import static br.com.devotaku.animeservice.shared.generators.IdentifierUtils.MAXIMUM_DEFAULT_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

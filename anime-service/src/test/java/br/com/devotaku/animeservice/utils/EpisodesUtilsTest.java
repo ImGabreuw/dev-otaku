@@ -1,11 +1,11 @@
 package br.com.devotaku.animeservice.utils;
 
-import org.junit.jupiter.api.Assertions;
+import br.com.devotaku.animeservice.shared.generators.EpisodesUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static br.com.devotaku.animeservice.utils.EpisodesUtils.EPISODES_DEFAULT_VALUE;
+import static br.com.devotaku.animeservice.shared.generators.EpisodesUtils.EPISODES_DEFAULT_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class EpisodesUtilsTest {

@@ -1,11 +1,12 @@
 package br.com.devotaku.animeservice.utils;
 
 import br.com.devotaku.animeservice.domain.entities.value.objects.AlternativeName;
+import br.com.devotaku.animeservice.shared.generators.AlternativeNameUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static br.com.devotaku.animeservice.utils.AlternativeNameUtils.LIMIT_DEFAULT_VALUE;
+import static br.com.devotaku.animeservice.shared.generators.AlternativeNameUtils.LIMIT_DEFAULT_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AlternativeNameUtilsTest {

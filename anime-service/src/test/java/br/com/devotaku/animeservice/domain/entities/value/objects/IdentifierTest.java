@@ -1,7 +1,7 @@
 package br.com.devotaku.animeservice.domain.entities.value.objects;
 
 import br.com.devotaku.animeservice.shared.validation.SelfValidation;
-import br.com.devotaku.animeservice.utils.IdentifierUtils;
+import br.com.devotaku.animeservice.shared.generators.IdentifierUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
