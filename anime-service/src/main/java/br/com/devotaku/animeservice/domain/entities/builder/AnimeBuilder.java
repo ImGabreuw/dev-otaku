@@ -50,6 +50,11 @@ public class AnimeBuilder {
         return new AnimeBuilder();
     }
 
+    public AnimeBuilder id() {
+        this.id = IdentifierUtils.getInstance().generateIdentifier();
+        return this;
+    }
+
     public AnimeBuilder id(Long id) {
         this.id = new Identifier(id);
         return this;
@@ -57,6 +62,11 @@ public class AnimeBuilder {
 
     public AnimeBuilder id(Identifier id) {
         this.id = id;
+        return this;
+    }
+
+    public AnimeBuilder title() {
+        this.title = TitleUtils.getInstance().generateTitle();
         return this;
     }
 
@@ -70,6 +80,11 @@ public class AnimeBuilder {
         return this;
     }
 
+    public AnimeBuilder alternativeNames() {
+        this.alternativeNames = AlternativeNameUtils.getInstance().generateAlternativeNameSequence();
+        return this;
+    }
+
     public AnimeBuilder alternativeNames(AlternativeName... alternativeNames) {
         this.alternativeNames = new HashSet<>(Arrays.asList(alternativeNames));
         return this;
@@ -77,6 +92,11 @@ public class AnimeBuilder {
 
     public AnimeBuilder alternativeNames(Set<AlternativeName> alternativeNames) {
         this.alternativeNames = alternativeNames;
+        return this;
+    }
+
+    public AnimeBuilder description() {
+        this.description = DescriptionUtils.getInstance().generateDescription();
         return this;
     }
 
@@ -90,6 +110,11 @@ public class AnimeBuilder {
         return this;
     }
 
+    public AnimeBuilder score() {
+        this.score = ScoreUtils.getInstance().generateScore();
+        return this;
+    }
+
     public AnimeBuilder score(Double score) {
         this.score = new Score(score);
         return this;
@@ -97,6 +122,11 @@ public class AnimeBuilder {
 
     public AnimeBuilder score(Score score) {
         this.score = score;
+        return this;
+    }
+
+    public AnimeBuilder episodes() {
+        this.episodes = EpisodesUtils.getInstance().generateEpisodes();
         return this;
     }
 
@@ -110,8 +140,18 @@ public class AnimeBuilder {
         return this;
     }
 
+    public AnimeBuilder status() {
+        this.status = StatusUtils.getInstance().generateStatus();
+        return this;
+    }
+
     public AnimeBuilder status(Status status) {
         this.status = status;
+        return this;
+    }
+
+    public AnimeBuilder launchedAt() {
+        this.launchedAt = LocalDateUtils.getInstance().generateLaunchedAt();
         return this;
     }
 
@@ -125,6 +165,11 @@ public class AnimeBuilder {
         return this;
     }
 
+    public AnimeBuilder endedAt() {
+        this.endedAt = LocalDateUtils.getInstance().generateEndedAt(launchedAt);
+        return this;
+    }
+
     public AnimeBuilder endedAt(LocalDate endedAt) {
         this.endedAt = endedAt;
         return this;
@@ -132,6 +177,11 @@ public class AnimeBuilder {
 
     public AnimeBuilder endedAt(String endedAt) {
         this.endedAt = DateParser.parse(endedAt);
+        return this;
+    }
+
+    public AnimeBuilder producers() {
+        this.producers = ProducerUtils.getInstance().generateProducerSequence();
         return this;
     }
 
@@ -145,6 +195,11 @@ public class AnimeBuilder {
         return this;
     }
 
+    public AnimeBuilder studios() {
+        this.studios = StudioUtils.getInstance().generateStudioSequence();
+        return this;
+    }
+
     public AnimeBuilder studios(Studio... studios) {
         this.studios = new HashSet<>(Arrays.asList(studios));
         return this;
@@ -155,8 +210,18 @@ public class AnimeBuilder {
         return this;
     }
 
+    public AnimeBuilder source() {
+        this.source = SourceTypeUtils.getInstance().generateSourceType();
+        return this;
+    }
+
     public AnimeBuilder source(SourceType source) {
         this.source = source;
+        return this;
+    }
+
+    public AnimeBuilder genres() {
+        this.genres = GenreUtils.getInstance().generateGenres();
         return this;
     }
 
@@ -172,24 +237,6 @@ public class AnimeBuilder {
 
     public Anime build() {
         return new Anime(id, title, alternativeNames, description, score, episodes, status, launchedAt, endedAt, producers, studios, source, genres);
-    }
-
-    public Anime buildMock() {
-        return new Anime(
-                id == null ? IdentifierUtils.getInstance().generateIdentifier() : id,
-                title == null ? TitleUtils.getInstance().generateTitle() : title,
-                alternativeNames == null ? AlternativeNameUtils.getInstance().generateAlternativeNameSequence() : alternativeNames,
-                description == null ? DescriptionUtils.getInstance().generateDescription() : description,
-                score == null ? ScoreUtils.getInstance().generateScore() : score,
-                episodes == null ? EpisodesUtils.getInstance().generateEpisodes() : episodes,
-                status == null ? StatusUtils.getInstance().generateStatus() : status,
-                launchedAt == null ? LocalDateUtils.getInstance().generateLaunchedAt() : launchedAt,
-                endedAt == null ? LocalDateUtils.getInstance().generateEndedAt(launchedAt) : endedAt,
-                producers == null ? ProducerUtils.getInstance().generateProducerSequence() : producers,
-                studios == null ? StudioUtils.getInstance().generateStudioSequence() : studios,
-                source == null ? SourceTypeUtils.getInstance().generateSourceType() : source,
-                genres == null ? GenreUtils.getInstance().generateGenres() : genres
-        );
     }
 
 }
