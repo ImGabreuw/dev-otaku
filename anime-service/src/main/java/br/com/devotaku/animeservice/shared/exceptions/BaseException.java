@@ -1,13 +1,15 @@
 package br.com.devotaku.animeservice.shared.exceptions;
 
-public class BaseException extends RuntimeException {
+public abstract class BaseException extends RuntimeException {
 
-    public BaseException(String message) {
+    protected BaseException(String message) {
         super(message);
     }
 
-    public BaseException(String message, Object... values) {
-        super(String.format(message, values));
+    protected BaseException(String message, Object... values) {
+        super(message.formatted(values));
     }
+
+    public abstract int getStatusCode();
 
 }
