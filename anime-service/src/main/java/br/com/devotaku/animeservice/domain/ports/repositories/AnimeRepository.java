@@ -11,10 +11,6 @@ public interface AnimeRepository {
 
     List<Anime> findAll(PageInfo pageInfo);
 
-    default List<Anime> findAll() {
-        return findAll(PageInfo.createDefault());
-    }
-
     Optional<Anime> findById(Long id);
 
     Optional<Anime> findByTitleOrAlternativeName(String animeName);
