@@ -13,11 +13,11 @@ public interface AnimeRepository {
 
     Optional<Anime> findById(Long id);
 
-    Optional<Anime> findByTitleOrAlternativeName(String animeName);
+    Optional<Anime> findByTitleOrAlternativeNames(String animeName);
 
-    List<Anime> findAllByProducer(String producerName);
+    List<Anime> findAllByProducers(String producerName);
 
-    List<Anime> findAllByStudio(String studioName);
+    List<Anime> findAllByStudios(String studioName);
 
     List<Anime> fetchTop(PageInfo pageInfo);
 
