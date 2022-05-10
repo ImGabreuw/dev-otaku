@@ -20,7 +20,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByTitleIsLikeIgnoreCaseByTitleIsLikeIgnoreCase(String title, Pageable pageable);
+    Page<AnimeEntity> findAnimeEntitiesByTitleIsLikeIgnoreCaseByTitleIsLikeIgnoreCaseOrderByScoreDescTitleAsc(String title, Pageable pageable);
 
     /**
      * Retrieve all paginated anime containing a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.AlternativeName} ordered by score (descendent) and title (ascending)
@@ -29,7 +29,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByAlternativeNamesContainingIgnoreCase(String alternativeName, Pageable pageable);
+    Page<AnimeEntity> findAnimeEntitiesByAlternativeNamesContainingIgnoreCaseOrderByScoreDescTitleAsc(String alternativeName, Pageable pageable);
 
     /**
      * Retrieve all paginated anime of a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.Producer} ordered by score (descendent) and title (ascending)
@@ -38,7 +38,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByProducersContainingIgnoreCase(String producerName, Pageable pageable);
+    Page<AnimeEntity> findAnimeEntitiesByProducersContainingIgnoreCaseOrderByScoreDescTitleAsc(String producerName, Pageable pageable);
 
     /**
      * Retrieve all paginated anime of a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.Studio} ordered by score (descendent) and title (ascending)
