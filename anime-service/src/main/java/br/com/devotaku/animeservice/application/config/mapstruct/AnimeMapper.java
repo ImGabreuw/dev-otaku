@@ -19,6 +19,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
 
 /**
@@ -50,6 +55,12 @@ public interface AnimeMapper extends IMapper<Anime, AnimeEntity> {
     })
     AnimeEntity mapToApp(Anime domain);
 
+    default Stream<AnimeEntity> mapCollectionToApp(Collection<Anime> animeCollection) {
+        return animeCollection
+                .stream()
+                .map(this::mapToApp);
+    }
+
     @Override
     @Mappings({
             @Mapping(target = "id", qualifiedBy = {IdentifierMapper.class, ToDomain.class}),
@@ -62,5 +73,11 @@ public interface AnimeMapper extends IMapper<Anime, AnimeEntity> {
             @Mapping(target = "studios", qualifiedBy = {StudioMapper.class, ToDomain.class}),
     })
     Anime mapToDomain(AnimeEntity other);
+
+    default Stream<Anime> mapCollectionToDomain(Collection<AnimeEntity> animeEntityCollection) {
+        return animeEntityCollection
+                .stream()
+                .map(this::mapToDomain);
+    }
 
 }
