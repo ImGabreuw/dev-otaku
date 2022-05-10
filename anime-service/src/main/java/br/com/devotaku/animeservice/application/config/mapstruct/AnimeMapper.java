@@ -61,6 +61,10 @@ public interface AnimeMapper extends IMapper<Anime, AnimeEntity> {
                 .map(this::mapToApp);
     }
 
+    default Stream<AnimeEntity> mapStreamToApp(Stream<Anime> animeStream) {
+        return animeStream.map(this::mapToApp);
+    }
+
     @Override
     @Mappings({
             @Mapping(target = "id", qualifiedBy = {IdentifierMapper.class, ToDomain.class}),
@@ -78,6 +82,10 @@ public interface AnimeMapper extends IMapper<Anime, AnimeEntity> {
         return animeEntityCollection
                 .stream()
                 .map(this::mapToDomain);
+    }
+
+    default Stream<Anime> mapStreamToDomain(Stream<AnimeEntity> animeEntityStream) {
+        return animeEntityStream.map(this::mapToDomain);
     }
 
 }
