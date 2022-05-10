@@ -1,6 +1,6 @@
 package br.com.devotaku.animeservice.application.dataprovider.repository;
 
-import br.com.devotaku.animeservice.application.config.mapper.AnimeMapper;
+import br.com.devotaku.animeservice.application.config.mapstruct.AnimeMapper;
 import br.com.devotaku.animeservice.application.dataprovider.jpa.AnimeJpaRepository;
 import br.com.devotaku.animeservice.domain.entities.Anime;
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
@@ -8,7 +8,6 @@ import br.com.devotaku.animeservice.domain.ports.repositories.AnimeRepository;
 import br.com.devotaku.animeservice.shared.page.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
