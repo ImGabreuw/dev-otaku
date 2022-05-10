@@ -1,6 +1,7 @@
 package br.com.devotaku.animeservice.shared.page;
 
 import br.com.devotaku.animeservice.shared.validation.SelfValidation;
+import org.springframework.data.domain.PageRequest;
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -39,6 +40,10 @@ public record PageInfo(
 
     public static PageInfo createDefault() {
         return create(0, 20);
+    }
+
+    public PageRequest toPageRequest() {
+        return PageRequest.of(pageNumber, pageSize);
     }
 
 }
