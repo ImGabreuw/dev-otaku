@@ -13,65 +13,29 @@ public interface AnimeRepository {
 
     Optional<Anime> findById(Long id);
 
-    Optional<Anime> findByTitleOrAlternativeNames(String animeName);
+    List<Anime> findByTitleOrAlternativeNames(String animeName, PageInfo pageInfo);
 
-    List<Anime> findAllByProducers(String producerName);
+    List<Anime> findByProducer(String producerName, PageInfo pageInfo);
 
-    List<Anime> findAllByStudios(String studioName);
+    List<Anime> findByStudio(String studioName, PageInfo pageInfo);
 
     List<Anime> fetchTop(PageInfo pageInfo);
 
-    default List<Anime> fetchTop() {
-        return fetchTop(PageInfo.createDefault());
-    }
+    List<Anime> findByStatusFinished(PageInfo pageInfo);
 
-    List<Anime> findAllByFinished(PageInfo pageInfo);
+    List<Anime> findByStatusPublishing(PageInfo pageInfo);
 
-    default List<Anime> findAllByFinished() {
-        return findAllByFinished(PageInfo.createDefault());
-    }
+    List<Anime> findByLaunchedAtToday(PageInfo pageInfo);
 
-    List<Anime> findAllByPublishing(PageInfo pageInfo);
+    List<Anime> findByEndedAtToday(PageInfo pageInfo);
 
-    default List<Anime> findAllByPublishing() {
-        return findAllByPublishing(PageInfo.createDefault());
-    }
+    List<Anime> findBySourceTypeManga(PageInfo pageInfo);
 
-    List<Anime> findAllByLaunchedAtToday(PageInfo pageInfo);
+    List<Anime> findBySourceTypeAsManhwa(PageInfo pageInfo);
 
-    default List<Anime> findAllByLaunchedAtToday() {
-        return findAllByLaunchedAtToday(PageInfo.createDefault());
-    }
+    List<Anime> findBySourceTypeAsWebtoon(PageInfo pageInfo);
 
-    List<Anime> findAllByEndedAtToday(PageInfo pageInfo);
-
-    default List<Anime> findAllByEndedAtToday() {
-        return findAllByEndedAtToday(PageInfo.createDefault());
-    }
-
-    List<Anime> findAllBySourceTypeAsManga(PageInfo pageInfo);
-
-    default List<Anime> findAllBySourceTypeAsManga() {
-        return findAllBySourceTypeAsManga(PageInfo.createDefault());
-    }
-
-    List<Anime> findAllBySourceTypeAsManhwa(PageInfo pageInfo);
-
-    default List<Anime> findAllBySourceTypeAsManhwa() {
-        return findAllBySourceTypeAsManhwa(PageInfo.createDefault());
-    }
-
-    List<Anime> findAllBySourceTypeAsWebtoon(PageInfo pageInfo);
-
-    default List<Anime> findAllBySourceTypeAsWebtoon() {
-        return findAllBySourceTypeAsWebtoon(PageInfo.createDefault());
-    }
-
-    List<Anime> findAllByGenre(Genre genre, PageInfo pageInfo);
-
-    default List<Anime> findAllByGenre(Genre genre) {
-        return findAllByGenre(genre, PageInfo.createDefault());
-    }
+    List<Anime> findAllByGenres(List<Genre> genres, PageInfo pageInfo);
 
     Anime save(Anime anime);
 
