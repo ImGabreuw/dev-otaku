@@ -1,39 +1,115 @@
 package br.com.devotaku.animeservice.application.dataprovider.jpa;
 
 import br.com.devotaku.animeservice.application.dataprovider.entities.AnimeEntity;
-import br.com.devotaku.animeservice.domain.entities.Anime;
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
-import br.com.devotaku.animeservice.shared.page.PageInfo;
+import br.com.devotaku.animeservice.domain.entities.enums.SourceType;
+import br.com.devotaku.animeservice.domain.entities.enums.Status;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
 
-    Optional<AnimeEntity> findByTitleOrAlternativeNames(String animeName);
+    /**
+     * Retrieve all paginated anime containing a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.Title} ordered by score (descendent) and title (ascending)
+     *
+     * @param title {@link String}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByTitleIsLikeIgnoreCaseByTitleIsLikeIgnoreCase(String title, Pageable pageable);
 
-    List<AnimeEntity> findAllByProducers(String producerName);
+    /**
+     * Retrieve all paginated anime containing a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.AlternativeName} ordered by score (descendent) and title (ascending)
+     *
+     * @param alternativeName {@link String}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByAlternativeNamesContainingIgnoreCase(String alternativeName, Pageable pageable);
 
-    List<AnimeEntity> findAllByStudios(String studioName);
+    /**
+     * Retrieve all paginated anime of a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.Producer} ordered by score (descendent) and title (ascending)
+     *
+     * @param producerName {@link String}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByProducersContainingIgnoreCase(String producerName, Pageable pageable);
 
-    List<AnimeEntity> findTopByScore(Pageable pageable);
+    /**
+     * Retrieve all paginated anime of a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.Studio} ordered by score (descendent) and title (ascending)
+     *
+     * @param studioName {@link String}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByStudiosContainingIgnoreCaseOrderByScoreDescTitleAsc(String studioName, Pageable pageable);
 
-    List<AnimeEntity> findAllByStatus_Finished(Pageable pageable);
+    /**
+     * Retrieve the top 10 anime
+     *
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findTopByOrderByScoreDesc(Pageable pageable);
 
-    List<AnimeEntity> findAllByStatus_Publishing(Pageable pageable);
+    /**
+     * Retrieve all paginated anime of a specific {@link Status} ordered by score (descendent) and title (ascending)
+     *
+     * @param status {@link Status}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByStatusOrderByScoreDescTitleAsc(Status status, Pageable pageable);
 
-    List<AnimeEntity> findAllByLaunchedAtToday(Pageable pageable);
+    /**
+     * Retrieve all paginated anime of a specific <code>launchedAt</code> date ordered by score (descendent) and title (ascending)
+     *
+     * @param launchedAt {@link LocalDate}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByLaunchedAtOrderByScoreDescTitleAsc(LocalDate launchedAt, Pageable pageable);
 
-    List<AnimeEntity> findAllByEndedAtToday(Pageable pageable);
+    /**
+     * Retrieve all paginated anime of a specific season (date range) ordered by score (descendent) and title (ascending)
+     *
+     * @param start {@link LocalDate}
+     * @param end {@link LocalDate}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByLaunchedAtBetweenOrderByScoreDescTitleAsc(LocalDate start, LocalDate end, Pageable pageable);
 
-    List<AnimeEntity> findAllBySourceTypeAsManga(Pageable pageable);
+    /**
+     * Retrieve all paginated anime of a specific <code>endedAt</code> date ordered by score (descendent) and title (ascending)
+     *
+     * @param launchedAt {@link LocalDate}
+     * @param pageable {@link LocalDate}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByEndedAtOrderByScoreDescTitleAsc(LocalDate launchedAt, Pageable pageable);
 
-    List<AnimeEntity> findAllBySourceTypeAsManhwa(Pageable pageable);
+    /**
+     * Retrieve all paginated anime of a specific {@link SourceType} ordered by score (descendent) and title (ascending)
+     *
+     * @param source {@link SourceType}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesBySourceOrderByScoreDescTitleAsc(SourceType source, Pageable pageable);
 
-    List<AnimeEntity> findAllBySourceTypeAsWebtoon(Pageable pageable);
-
-    List<AnimeEntity> findAllByGenre(Genre genre, Pageable pageable);
+    /**
+     * Retrieve all paginated anime of a specific or a set of {@link Genre} ordered by score (descendent) and title (ascending)
+     *
+     * @param genres {@link Genre}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByGenresOrderByScoreDescTitleAsc(List<Genre> genres, Pageable pageable);
 
 }
