@@ -2,6 +2,7 @@ package br.com.devotaku.animeservice.domain.ports.repositories;
 
 import br.com.devotaku.animeservice.domain.entities.Anime;
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
+import br.com.devotaku.animeservice.domain.entities.enums.Season;
 import br.com.devotaku.animeservice.shared.page.PageInfo;
 
 import java.util.List;
@@ -26,6 +27,8 @@ public interface AnimeRepository {
     List<Anime> findByStatusPublishing(PageInfo pageInfo);
 
     List<Anime> findByLaunchedAtToday(PageInfo pageInfo);
+
+    List<Anime> findBySeason(Season season, PageInfo pageInfo);
 
     List<Anime> findByEndedAtToday(PageInfo pageInfo);
 

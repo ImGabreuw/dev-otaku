@@ -1,15 +1,22 @@
 package br.com.devotaku.animeservice.application.dataprovider.repository;
 
 import br.com.devotaku.animeservice.application.config.mapstruct.AnimeMapper;
+import br.com.devotaku.animeservice.application.dataprovider.entities.AnimeEntity;
 import br.com.devotaku.animeservice.application.dataprovider.jpa.AnimeJpaRepository;
 import br.com.devotaku.animeservice.domain.entities.Anime;
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
+import br.com.devotaku.animeservice.domain.entities.enums.Season;
 import br.com.devotaku.animeservice.domain.ports.repositories.AnimeRepository;
 import br.com.devotaku.animeservice.shared.page.PageInfo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.MonthDay;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -138,6 +145,25 @@ public class AnimeRepositoryImpl implements AnimeRepository {
 
         return launchedAtTodaySearch
                 .stream()
+                .map(animeMapper::mapToDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Anime> findBySeason(Season season, PageInfo pageInfo) {
+        var page = pageInfo.toPageRequest();
+
+        List<AnimeEntity> intersection = new ArrayList<>();
+
+        for (int month : season.getValueOfSeasonMonths()) {
+            var monthSearch = animeJpaRepository.findAnimeEntitiesByLaunchedAtMonthValueOrderByScoreDescTitleAsc(month, page);
+
+            intersection.addAll(monthSearch.toList());
+        }
+
+        return intersection
+                .stream()
+                .distinct()
                 .map(animeMapper::mapToDomain)
                 .collect(Collectors.toList());
     }

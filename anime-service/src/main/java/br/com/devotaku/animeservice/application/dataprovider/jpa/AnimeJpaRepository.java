@@ -76,7 +76,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
     Page<AnimeEntity> findAnimeEntitiesByLaunchedAtOrderByScoreDescTitleAsc(LocalDate launchedAt, Pageable pageable);
 
     /**
-     * Retrieve all paginated anime of a specific season (date range) ordered by score (descendent) and title (ascending)
+     * Retrieve all paginated anime of a specific date range ordered by score (descendent) and title (ascending)
      *
      * @param start {@link LocalDate}
      * @param end {@link LocalDate}
@@ -84,6 +84,15 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @return {@link AnimeEntity}
      */
     Page<AnimeEntity> findAnimeEntitiesByLaunchedAtBetweenOrderByScoreDescTitleAsc(LocalDate start, LocalDate end, Pageable pageable);
+
+    /**
+     * Retrieve all paginated anime launched at a specific month ordered by score (descendent) and title (ascending)
+     *
+     * @param month  {@link java.time.Month}
+     * @param pageable {@link Pageable}
+     * @return {@link AnimeEntity}
+     */
+    Page<AnimeEntity> findAnimeEntitiesByLaunchedAtMonthValueOrderByScoreDescTitleAsc(int month, Pageable pageable);
 
     /**
      * Retrieve all paginated anime of a specific <code>endedAt</code> date ordered by score (descendent) and title (ascending)
