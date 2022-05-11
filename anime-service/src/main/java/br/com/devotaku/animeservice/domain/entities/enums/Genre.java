@@ -3,6 +3,9 @@ package br.com.devotaku.animeservice.domain.entities.enums;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Getter
 public enum Genre {
@@ -50,5 +53,12 @@ public enum Genre {
     YURI("Anime whose central theme is a sexual relationship between two girls or women. This implies Hentai.");
 
     private final String description;
+
+    public static String convertGenresToString(Collection<Genre> genres) {
+        return genres
+                .stream()
+                .map(Genre::toString)
+                .collect(Collectors.joining(","));
+    }
 
 }

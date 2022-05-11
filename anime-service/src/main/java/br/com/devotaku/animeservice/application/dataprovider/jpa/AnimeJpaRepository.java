@@ -7,6 +7,7 @@ import br.com.devotaku.animeservice.domain.entities.enums.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,7 +21,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByTitleIsLikeIgnoreCaseByTitleIsLikeIgnoreCaseOrderByScoreDescTitleAsc(String title, Pageable pageable);
+    Page<AnimeEntity> findAnimeEntitiesByTitleIsLikeIgnoreCaseOrderByScoreDescTitleAsc(String title, Pageable pageable);
 
     /**
      * Retrieve all paginated anime containing a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.AlternativeName} ordered by score (descendent) and title (ascending)
@@ -115,10 +116,11 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
     /**
      * Retrieve all paginated anime of a specific or a set of {@link Genre} ordered by score (descendent) and title (ascending)
      *
-     * @param genres {@link Genre}
+     * @param genres Use <code>convertGenresToString()</code> method from {@link Genre} to convert a list of genre into a String
      * @param pageable {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByGenresOrderByScoreDescTitleAsc(List<Genre> genres, Pageable pageable);
+    @SuppressWarnings("SpringDataRepositoryMethodParametersInspection")
+    Page<AnimeEntity> findAnimeEntitiesByGenresOrderByScoreDescTitleAsc(String genres, Pageable pageable);
 
 }

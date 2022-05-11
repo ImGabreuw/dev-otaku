@@ -1,5 +1,6 @@
 package br.com.devotaku.animeservice.application.dataprovider.entities;
 
+import br.com.devotaku.animeservice.application.config.jpa.converter.GenreConverter;
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
 import br.com.devotaku.animeservice.domain.entities.enums.SourceType;
 import br.com.devotaku.animeservice.domain.entities.enums.Status;
@@ -13,7 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 
 
@@ -58,8 +58,8 @@ public class AnimeEntity {
     @Column(nullable = false)
     private SourceType source;
 
-    @Enumerated(STRING)
     @ElementCollection
+    @Convert(converter = GenreConverter.class)
     private List<Genre> genres;
 
     public AnimeEntity(Long id, String title, Set<String> alternativeNames, String description, Double score, Integer episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<String> producers, Set<String> studios, SourceType source, List<Genre> genres) {
