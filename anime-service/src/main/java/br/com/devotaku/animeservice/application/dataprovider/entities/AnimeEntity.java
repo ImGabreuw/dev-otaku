@@ -1,7 +1,5 @@
 package br.com.devotaku.animeservice.application.dataprovider.entities;
 
-import br.com.devotaku.animeservice.application.config.jpa.converter.GenreConverter;
-import br.com.devotaku.animeservice.domain.entities.enums.Genre;
 import br.com.devotaku.animeservice.domain.entities.enums.SourceType;
 import br.com.devotaku.animeservice.domain.entities.enums.Status;
 import lombok.Data;
@@ -14,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 
@@ -29,7 +28,7 @@ public class AnimeEntity {
     @Column(nullable = false)
     private String title;
 
-    @ElementCollection
+    @ElementCollection(fetch = EAGER)
     private Set<String> alternativeNames;
 
     @Column(nullable = false, columnDefinition = "TEXT")
@@ -49,20 +48,19 @@ public class AnimeEntity {
 
     private LocalDate endedAt;
 
-    @ElementCollection
+    @ElementCollection(fetch = EAGER)
     private Set<String> producers;
 
-    @ElementCollection
+    @ElementCollection(fetch = EAGER)
     private Set<String> studios;
 
     @Column(nullable = false)
     private SourceType source;
 
-    @ElementCollection
-    @Convert(converter = GenreConverter.class)
-    private List<Genre> genres;
+    @ElementCollection(fetch = EAGER)
+    private List<String> genres;
 
-    public AnimeEntity(Long id, String title, Set<String> alternativeNames, String description, Double score, Integer episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<String> producers, Set<String> studios, SourceType source, List<Genre> genres) {
+    public AnimeEntity(Long id, String title, Set<String> alternativeNames, String description, Double score, Integer episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<String> producers, Set<String> studios, SourceType source, List<String> genres) {
         this.id = id;
         this.title = title;
         this.alternativeNames = alternativeNames == null ? new HashSet<>() : alternativeNames;
