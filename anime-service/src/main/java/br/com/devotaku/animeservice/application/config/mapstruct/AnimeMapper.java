@@ -6,6 +6,7 @@ import br.com.devotaku.animeservice.application.config.mapstruct.annotations.alt
 import br.com.devotaku.animeservice.application.config.mapstruct.annotations.description.DescriptionMapper;
 import br.com.devotaku.animeservice.application.config.mapstruct.annotations.endedat.EndedAtMapper;
 import br.com.devotaku.animeservice.application.config.mapstruct.annotations.episodes.EpisodesMapper;
+import br.com.devotaku.animeservice.application.config.mapstruct.annotations.genre.GenreMapper;
 import br.com.devotaku.animeservice.application.config.mapstruct.annotations.identifier.IdentifierMapper;
 import br.com.devotaku.animeservice.application.config.mapstruct.annotations.producer.ProducerMapper;
 import br.com.devotaku.animeservice.application.config.mapstruct.annotations.score.ScoreMapper;
@@ -19,11 +20,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
 
 /**
@@ -36,7 +32,7 @@ import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
 
 @Mapper(
         componentModel = "spring",
-        uses = {IdentifierMethod.class, TitleMethod.class, AlternativeNamesMethod.class, DescriptionMethod.class, ScoreMethod.class, EpisodesMethod.class, EndedAtMethod.class, ProducerMethod.class, StudioMethod.class,},
+        uses = {IdentifierMethod.class, TitleMethod.class, AlternativeNamesMethod.class, DescriptionMethod.class, ScoreMethod.class, EpisodesMethod.class, EndedAtMethod.class, ProducerMethod.class, StudioMethod.class, GenreMethod.class},
         injectionStrategy = CONSTRUCTOR
 )
 public interface AnimeMapper extends IMapper<Anime, AnimeEntity> {
@@ -52,18 +48,9 @@ public interface AnimeMapper extends IMapper<Anime, AnimeEntity> {
             @Mapping(target = "endedAt", qualifiedBy = {EndedAtMapper.class, ToApp.class}),
             @Mapping(target = "producers", qualifiedBy = {ProducerMapper.class, ToApp.class}),
             @Mapping(target = "studios", qualifiedBy = {StudioMapper.class, ToApp.class}),
+            @Mapping(target = "genres", qualifiedBy = {GenreMapper.class, ToApp.class}),
     })
     AnimeEntity mapToApp(Anime domain);
-
-    default Stream<AnimeEntity> mapCollectionToApp(Collection<Anime> animeCollection) {
-        return animeCollection
-                .stream()
-                .map(this::mapToApp);
-    }
-
-    default Stream<AnimeEntity> mapStreamToApp(Stream<Anime> animeStream) {
-        return animeStream.map(this::mapToApp);
-    }
 
     @Override
     @Mappings({
@@ -75,17 +62,8 @@ public interface AnimeMapper extends IMapper<Anime, AnimeEntity> {
             @Mapping(target = "episodes", qualifiedBy = {EpisodesMapper.class, ToDomain.class}),
             @Mapping(target = "producers", qualifiedBy = {ProducerMapper.class, ToDomain.class}),
             @Mapping(target = "studios", qualifiedBy = {StudioMapper.class, ToDomain.class}),
+            @Mapping(target = "genres", qualifiedBy = {GenreMapper.class, ToDomain.class}),
     })
     Anime mapToDomain(AnimeEntity other);
-
-    default Stream<Anime> mapCollectionToDomain(Collection<AnimeEntity> animeEntityCollection) {
-        return animeEntityCollection
-                .stream()
-                .map(this::mapToDomain);
-    }
-
-    default Stream<Anime> mapStreamToDomain(Stream<AnimeEntity> animeEntityStream) {
-        return animeEntityStream.map(this::mapToDomain);
-    }
 
 }

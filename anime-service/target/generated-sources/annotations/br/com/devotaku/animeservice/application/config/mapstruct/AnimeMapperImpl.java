@@ -4,6 +4,7 @@ import br.com.devotaku.animeservice.application.config.mapstruct.methods.Alterna
 import br.com.devotaku.animeservice.application.config.mapstruct.methods.DescriptionMethod;
 import br.com.devotaku.animeservice.application.config.mapstruct.methods.EndedAtMethod;
 import br.com.devotaku.animeservice.application.config.mapstruct.methods.EpisodesMethod;
+import br.com.devotaku.animeservice.application.config.mapstruct.methods.GenreMethod;
 import br.com.devotaku.animeservice.application.config.mapstruct.methods.IdentifierMethod;
 import br.com.devotaku.animeservice.application.config.mapstruct.methods.ProducerMethod;
 import br.com.devotaku.animeservice.application.config.mapstruct.methods.ScoreMethod;
@@ -23,7 +24,6 @@ import br.com.devotaku.animeservice.domain.entities.value.objects.Score;
 import br.com.devotaku.animeservice.domain.entities.value.objects.Studio;
 import br.com.devotaku.animeservice.domain.entities.value.objects.Title;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-11T18:48:08-0300",
+    date = "2022-05-11T20:26:22-0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17 (Oracle Corporation)"
 )
 @Component
@@ -47,9 +47,10 @@ public class AnimeMapperImpl implements AnimeMapper {
     private final EndedAtMethod endedAtMethod;
     private final ProducerMethod producerMethod;
     private final StudioMethod studioMethod;
+    private final GenreMethod genreMethod;
 
     @Autowired
-    public AnimeMapperImpl(IdentifierMethod identifierMethod, TitleMethod titleMethod, AlternativeNamesMethod alternativeNamesMethod, DescriptionMethod descriptionMethod, ScoreMethod scoreMethod, EpisodesMethod episodesMethod, EndedAtMethod endedAtMethod, ProducerMethod producerMethod, StudioMethod studioMethod) {
+    public AnimeMapperImpl(IdentifierMethod identifierMethod, TitleMethod titleMethod, AlternativeNamesMethod alternativeNamesMethod, DescriptionMethod descriptionMethod, ScoreMethod scoreMethod, EpisodesMethod episodesMethod, EndedAtMethod endedAtMethod, ProducerMethod producerMethod, StudioMethod studioMethod, GenreMethod genreMethod) {
 
         this.identifierMethod = identifierMethod;
         this.titleMethod = titleMethod;
@@ -60,6 +61,7 @@ public class AnimeMapperImpl implements AnimeMapper {
         this.endedAtMethod = endedAtMethod;
         this.producerMethod = producerMethod;
         this.studioMethod = studioMethod;
+        this.genreMethod = genreMethod;
     }
 
     @Override
@@ -79,13 +81,10 @@ public class AnimeMapperImpl implements AnimeMapper {
         animeEntity.setEndedAt( endedAtMethod.mapToApp( domain.getEndedAt() ) );
         animeEntity.setProducers( producerMethod.mapToApp( domain.getProducers() ) );
         animeEntity.setStudios( studioMethod.mapToApp( domain.getStudios() ) );
+        animeEntity.setGenres( genreMethod.mapToApp( domain.getGenres() ) );
         animeEntity.setStatus( domain.getStatus() );
         animeEntity.setLaunchedAt( domain.getLaunchedAt() );
         animeEntity.setSource( domain.getSource() );
-        List<Genre> list = domain.getGenres();
-        if ( list != null ) {
-            animeEntity.setGenres( new ArrayList<Genre>( list ) );
-        }
 
         return animeEntity;
     }
@@ -104,11 +103,11 @@ public class AnimeMapperImpl implements AnimeMapper {
         Episodes episodes = null;
         Set<Producer> producers = null;
         Set<Studio> studios = null;
+        List<Genre> genres = null;
         Status status = null;
         LocalDate launchedAt = null;
         LocalDate endedAt = null;
         SourceType source = null;
-        List<Genre> genres = null;
 
         id = identifierMethod.mapToDomain( other.getId() );
         title = titleMethod.mapToDomain( other.getTitle() );
@@ -118,14 +117,11 @@ public class AnimeMapperImpl implements AnimeMapper {
         episodes = episodesMethod.mapToDomain( other.getEpisodes() );
         producers = producerMethod.mapToDomain( other.getProducers() );
         studios = studioMethod.mapToDomain( other.getStudios() );
+        genres = genreMethod.mapToDomain( other.getGenres() );
         status = other.getStatus();
         launchedAt = other.getLaunchedAt();
         endedAt = other.getEndedAt();
         source = other.getSource();
-        List<Genre> list = other.getGenres();
-        if ( list != null ) {
-            genres = new ArrayList<Genre>( list );
-        }
 
         Anime anime = new Anime( id, title, alternativeNames, description, score, episodes, status, launchedAt, endedAt, producers, studios, source, genres );
 
