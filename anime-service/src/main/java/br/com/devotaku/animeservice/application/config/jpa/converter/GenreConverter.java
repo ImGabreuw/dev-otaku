@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Converter(autoApply = true)
+//@Converter(autoApply = true)
 public class GenreConverter implements AttributeConverter<List<Genre>, String> {
 
     @Override
