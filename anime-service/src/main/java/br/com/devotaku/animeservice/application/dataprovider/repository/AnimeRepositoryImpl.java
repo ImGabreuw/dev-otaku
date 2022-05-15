@@ -256,4 +256,9 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         return animeJpaRepository.existsById(id);
     }
 
+    @Override
+    public long count() {
+        return animeJpaRepository.count();
+    }
+
 }
