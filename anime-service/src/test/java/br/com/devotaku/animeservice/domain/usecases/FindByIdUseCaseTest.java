@@ -1,8 +1,7 @@
 package br.com.devotaku.animeservice.domain.usecases;
 
 import br.com.devotaku.animeservice.domain.ports.repositories.AnimeRepository;
-import br.com.devotaku.animeservice.shared.exceptions.EntityNotFoundException;
-import org.junit.jupiter.api.Assertions;
+import br.com.devotaku.animeservice.shared.exceptions.AnimeNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static br.com.devotaku.animeservice.shared.exceptions.EntityNotFoundException.MessageTemplate.ENTITY_NOT_FOUND_BY_ID;
+import static br.com.devotaku.animeservice.shared.exceptions.AnimeNotFoundException.MessageTemplate.ANIME_NOT_FOUND_BY_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -47,8 +46,8 @@ class FindByIdUseCaseTest {
         var input = new FindByIdUseCase.InputValues(id);
 
         assertThatThrownBy(() -> underTest.execute(input))
-                .isInstanceOf(EntityNotFoundException.class)
-                .hasMessage(ENTITY_NOT_FOUND_BY_ID.getMessage().formatted(id));
+                .isInstanceOf(AnimeNotFoundException.class)
+                .hasMessage(ANIME_NOT_FOUND_BY_ID.getMessage().formatted(id));
     }
 
 }
