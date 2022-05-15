@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
-public class EntityNotFoundException extends BaseException {
+public class AnimeNotFoundException extends BaseException {
 
-    public EntityNotFoundException(String message, Object... values) {
+    public AnimeNotFoundException(String message, Object... values) {
         super(message, values);
     }
 
@@ -19,7 +19,8 @@ public class EntityNotFoundException extends BaseException {
     @Getter
     @RequiredArgsConstructor
     public enum MessageTemplate {
-        ENTITY_NOT_FOUND_BY_ID("Entity not fount by id (%s).");
+        ANIME_NOT_FOUND_BY_ID("Anime not fount by id (%s)."),
+        ANIME_NOT_FOUND_BY_TITLE_OR_ALTERNATIVE_NAMES("There is no anime named (%s).");
 
         private final String message;
     }
