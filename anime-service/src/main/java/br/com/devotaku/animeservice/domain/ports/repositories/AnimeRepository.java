@@ -48,4 +48,6 @@ public interface AnimeRepository {
 
     boolean existsById(Long id);
 
+    long count();
+
 }
