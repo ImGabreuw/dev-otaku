@@ -1,6 +1,4 @@
-package br.com.devotaku.userservice.domain.ports;
-
-import java.util.Base64;
+package br.com.devotaku.userservice.domain.ports.protocols;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -10,21 +8,21 @@ public interface Encryptor {
 
     String decode(String source);
 
-    class DefaultEncryptor implements Encryptor {
+    class Base64 implements Encryptor {
 
-        private static DefaultEncryptor instance;
+        private static Base64 instance;
 
-        private final Base64.Encoder encoder;
-        private final Base64.Decoder decoder;
+        private final java.util.Base64.Encoder encoder;
+        private final java.util.Base64.Decoder decoder;
 
-        private DefaultEncryptor() {
-            this.encoder = Base64.getEncoder();
-            this.decoder = Base64.getDecoder();
+        private Base64() {
+            this.encoder = java.util.Base64.getEncoder();
+            this.decoder = java.util.Base64.getDecoder();
         }
 
-        public static DefaultEncryptor getInstance() {
+        public static Base64 getInstance() {
             if (instance == null) {
-                instance = new DefaultEncryptor();
+                instance = new Base64();
             }
 
             return instance;

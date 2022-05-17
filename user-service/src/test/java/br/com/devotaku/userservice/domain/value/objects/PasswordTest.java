@@ -1,6 +1,6 @@
 package br.com.devotaku.userservice.domain.value.objects;
 
-import br.com.devotaku.userservice.domain.ports.Encryptor;
+import br.com.devotaku.userservice.domain.ports.protocols.Encryptor;
 import br.com.devotaku.userservice.shared.validation.SelfValidation;
 import br.com.devotaku.userservice.utils.PasswordGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +18,7 @@ class PasswordTest {
 
         Password underTest = new Password(password);
 
-        assertThat(underTest.getValue()).isEqualTo(Encryptor.DefaultEncryptor.getInstance().encode(password));
+        assertThat(underTest.getValue()).isEqualTo(Encryptor.Base64.getInstance().encode(password));
     }
 
     @DisplayName("Should throw ValidationException when create Password because size is smaller than 8")

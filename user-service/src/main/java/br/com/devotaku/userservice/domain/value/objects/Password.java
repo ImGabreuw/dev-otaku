@@ -1,6 +1,6 @@
 package br.com.devotaku.userservice.domain.value.objects;
 
-import br.com.devotaku.userservice.domain.ports.Encryptor;
+import br.com.devotaku.userservice.domain.ports.protocols.Encryptor;
 import br.com.devotaku.userservice.shared.validation.SelfValidation;
 import br.com.devotaku.userservice.shared.validation.annotations.ContainsDigits;
 import br.com.devotaku.userservice.shared.validation.annotations.ContainsLowercase;
@@ -23,7 +23,7 @@ public class Password implements SelfValidation<Password> {
     private String value;
 
     public Password(String value) {
-        this(value, Encryptor.DefaultEncryptor.getInstance());
+        this(value, Encryptor.Base64.getInstance());
     }
 
     public Password(String value, Encryptor encryptor) {
