@@ -2,6 +2,7 @@ package br.com.devotaku.animeservice.shared.page;
 
 import br.com.devotaku.animeservice.shared.validation.SelfValidation;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -44,6 +45,16 @@ public record PageInfo(
 
     public PageRequest toPageRequest() {
         return PageRequest.of(pageNumber, pageSize);
+    }
+
+    public PageRequest toSortedPageRequest() {
+        return toPageRequest()
+                .withSort(
+                        Sort.by("score").descending()
+                                .and(
+                                        Sort.by("title").ascending()
+                                )
+                );
     }
 
 }
