@@ -34,7 +34,7 @@ public class AlternativeNameUtils {
     }
 
     public String generateAlternativeNameValue() {
-        return faker.company().name();
+        return faker.name().title();
     }
 
     public Set<AlternativeName> generateAlternativeNameSequence(int limit) {
