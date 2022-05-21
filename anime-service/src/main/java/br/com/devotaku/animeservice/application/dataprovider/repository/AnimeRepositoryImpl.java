@@ -49,12 +49,12 @@ public class AnimeRepositoryImpl implements AnimeRepository {
 
     @Override
     public List<Anime> findByTitleOrAlternativeNames(String animeName, PageInfo pageInfo) {
-        var page = pageInfo.toPageRequest();
+        var page = pageInfo.toSortedPageRequest();
 
         var titleSearch = animeJpaRepository
-                .findAnimeEntitiesByTitleIsLikeIgnoreCaseOrderByScoreDescTitleAsc(animeName, page);
+                .findByTitleIsLikeIgnoreCase(animeName, page);
         var alternativeNamesSearch = animeJpaRepository
-                .findAnimeEntitiesByAlternativeNamesContainingIgnoreCaseOrderByScoreDescTitleAsc(animeName, page);
+                .findDistinctByAlternativeNamesIsLikeIgnoreCase(animeName, page);
 
         return Stream.concat(
                         titleSearch.stream(),
@@ -71,7 +71,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var producerSearch = animeJpaRepository
-                .findAnimeEntitiesByProducersContainingIgnoreCaseOrderByScoreDescTitleAsc(producerName, page);
+                .findAnimeEntitiesByProducersContainingIgnoreCase(producerName, page);
 
         return producerSearch
                 .stream()
@@ -84,7 +84,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var studioSearch = animeJpaRepository
-                .findAnimeEntitiesByStudiosContainingIgnoreCaseOrderByScoreDescTitleAsc(studioName, page);
+                .findAnimeEntitiesByStudiosContainingIgnoreCase(studioName, page);
 
         return studioSearch
                 .stream()
@@ -110,7 +110,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var statusFinishedSearch = animeJpaRepository
-                .findAnimeEntitiesByStatusOrderByScoreDescTitleAsc(FINISHED, page);
+                .findAnimeEntitiesByStatus(FINISHED, page);
 
         return statusFinishedSearch
                 .stream()
@@ -123,7 +123,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var statusPublishingSearch = animeJpaRepository
-                .findAnimeEntitiesByStatusOrderByScoreDescTitleAsc(PUBLISHING, page);
+                .findAnimeEntitiesByStatus(PUBLISHING, page);
 
         return statusPublishingSearch
                 .stream()
@@ -137,7 +137,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var today = LocalDate.now();
 
         var launchedAtTodaySearch = animeJpaRepository
-                .findAnimeEntitiesByLaunchedAtOrderByScoreDescTitleAsc(today, page);
+                .findAnimeEntitiesByLaunchedAt(today, page);
 
         return launchedAtTodaySearch
                 .stream()
@@ -152,7 +152,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         List<AnimeEntity> intersection = new ArrayList<>();
 
         for (int month : season.getValueOfSeasonMonths()) {
-            var monthSearch = animeJpaRepository.findAnimeEntitiesByLaunchedAtMonthValueOrderByScoreDescTitleAsc(month, page);
+            var monthSearch = animeJpaRepository.findAnimeEntitiesByLaunchedAtMonthValue(month, page);
 
             intersection.addAll(monthSearch.toList());
         }
@@ -170,7 +170,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var today = LocalDate.now();
 
         var endedAtTodaySearch = animeJpaRepository
-                .findAnimeEntitiesByEndedAtOrderByScoreDescTitleAsc(today, page);
+                .findAnimeEntitiesByEndedAt(today, page);
 
         return endedAtTodaySearch
                 .stream()
@@ -183,7 +183,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var sourceTypeMangaSearch = animeJpaRepository
-                .findAnimeEntitiesBySourceOrderByScoreDescTitleAsc(MANGA, page);
+                .findAnimeEntitiesBySource(MANGA, page);
 
         return sourceTypeMangaSearch
                 .stream()
@@ -196,7 +196,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var sourceTypeManhwaSearch = animeJpaRepository
-                .findAnimeEntitiesBySourceOrderByScoreDescTitleAsc(MANHWA, page);
+                .findAnimeEntitiesBySource(MANHWA, page);
 
         return sourceTypeManhwaSearch
                 .stream()
@@ -209,7 +209,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var sourceTypeWebtoonSearch = animeJpaRepository
-                .findAnimeEntitiesBySourceOrderByScoreDescTitleAsc(WEBTOON, page);
+                .findAnimeEntitiesBySource(WEBTOON, page);
 
         return sourceTypeWebtoonSearch
                 .stream()
@@ -222,7 +222,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var genresSearch = animeJpaRepository
-                .findAnimeEntitiesByGenresOrderByScoreDescTitleAsc(Genre.convertGenresToString(genres), page);
+                .findAnimeEntitiesByGenres(Genre.convertGenresToString(genres), page);
 
         return genresSearch
                 .stream()
