@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -40,6 +39,7 @@ public class AnimeEntity {
     @Column(nullable = false)
     private Integer episodes;
 
+    @Enumerated(STRING)
     @Column(nullable = false)
     private Status status;
 
@@ -54,13 +54,14 @@ public class AnimeEntity {
     @ElementCollection(fetch = EAGER)
     private Set<String> studios;
 
+    @Enumerated(STRING)
     @Column(nullable = false)
     private SourceType source;
 
     @ElementCollection(fetch = EAGER)
-    private List<String> genres;
+    private Set<String> genres;
 
-    public AnimeEntity(Long id, String title, Set<String> alternativeNames, String description, Double score, Integer episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<String> producers, Set<String> studios, SourceType source, List<String> genres) {
+    public AnimeEntity(Long id, String title, Set<String> alternativeNames, String description, Double score, Integer episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<String> producers, Set<String> studios, SourceType source, HashSet<String> genres) {
         this.id = id;
         this.title = title;
         this.alternativeNames = alternativeNames == null ? new HashSet<>() : alternativeNames;
@@ -73,7 +74,7 @@ public class AnimeEntity {
         this.producers = producers;
         this.studios = studios == null ? new HashSet<>() : studios;
         this.source = source;
-        this.genres = genres == null ? new ArrayList<>() : genres;
+        this.genres = genres == null ? new HashSet<>() : genres;
     }
 
 }
