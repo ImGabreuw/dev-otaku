@@ -6,7 +6,7 @@ import br.com.devotaku.animeservice.application.config.mapstruct.annotations.gen
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @GenreMapper
@@ -14,19 +14,19 @@ import java.util.stream.Collectors;
 public class GenreMethod {
 
     @ToApp
-    public List<String> mapToApp(List<Genre> genres) {
+    public Set<String> mapToApp(Set<Genre> genres) {
         return genres
                 .stream()
                 .map(Genre::toString)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     @ToDomain
-    public List<Genre> mapToDomain(List<String> genres) {
+    public Set<Genre> mapToDomain(Set<String> genres) {
         return genres
                 .stream()
                 .map(Genre::valueOf)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
 }

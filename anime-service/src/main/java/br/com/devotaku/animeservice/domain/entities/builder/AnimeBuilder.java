@@ -44,7 +44,7 @@ public class AnimeBuilder {
 
     private SourceType source;
 
-    private List<Genre> genres;
+    private Set<Genre> genres;
 
     public static AnimeBuilder builder() {
         return new AnimeBuilder();
@@ -226,11 +226,11 @@ public class AnimeBuilder {
     }
 
     public AnimeBuilder genres(Genre... genres) {
-        this.genres = Arrays.asList(genres);
+        this.genres = new HashSet<>(List.of(genres));
         return this;
     }
 
-    public AnimeBuilder genres(List<Genre> genres) {
+    public AnimeBuilder genres(Set<Genre> genres) {
         this.genres = genres;
         return this;
     }

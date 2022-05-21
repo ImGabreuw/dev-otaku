@@ -59,9 +59,9 @@ public class Anime implements SelfValidation<Anime> {
 
     @Setter(PRIVATE)
     @Size(min = 1)
-    private List<Genre> genres;
+    private Set<Genre> genres;
 
-    public Anime(Identifier id, Title title, Set<AlternativeName> alternativeNames, Description description, Score score, Episodes episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<Producer> producers, Set<Studio> studios, SourceType source, List<Genre> genres) {
+    public Anime(Identifier id, Title title, Set<AlternativeName> alternativeNames, Description description, Score score, Episodes episodes, Status status, LocalDate launchedAt, LocalDate endedAt, Set<Producer> producers, Set<Studio> studios, SourceType source, Set<Genre> genres) {
         this.id = id;
         this.title = title;
         this.alternativeNames = alternativeNames == null ? new HashSet<>() : alternativeNames;
@@ -74,7 +74,7 @@ public class Anime implements SelfValidation<Anime> {
         this.producers = producers == null ? new HashSet<>() : producers;
         this.studios = studios == null ? new HashSet<>() : studios;
         this.source = source;
-        this.genres = genres == null ? new ArrayList<>() : genres;
+        this.genres = genres == null ? new HashSet<>() : genres;
 
         validate(this);
     }

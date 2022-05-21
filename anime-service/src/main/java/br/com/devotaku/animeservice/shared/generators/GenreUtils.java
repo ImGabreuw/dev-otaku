@@ -3,7 +3,7 @@ package br.com.devotaku.animeservice.shared.generators;
 import br.com.devotaku.animeservice.domain.entities.enums.Genre;
 import com.github.javafaker.Faker;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,15 +27,15 @@ public class GenreUtils {
         return instance;
     }
 
-    public List<Genre> generateGenres(int limit) {
+    public Set<Genre> generateGenres(int limit) {
         var genres = Genre.values();
 
         return Stream.generate(() -> genres[faker.number().numberBetween(0, genres.length - 1)])
                 .limit(limit)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
-    public List<Genre> generateGenres() {
+    public Set<Genre> generateGenres() {
         return generateGenres(LIMIT_DEFAULT_VALUE);
     }
 
