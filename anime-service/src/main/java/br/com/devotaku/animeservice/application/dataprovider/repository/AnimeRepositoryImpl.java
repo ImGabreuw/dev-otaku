@@ -71,7 +71,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var producerSearch = animeJpaRepository
-                .findAnimeEntitiesByProducersContainingIgnoreCase(producerName, page);
+                .findByProducersIsLikeIgnoreCase(producerName, page);
 
         return producerSearch
                 .stream()

@@ -20,7 +20,8 @@ public class AnimeNotFoundException extends BaseException {
     @RequiredArgsConstructor
     public enum MessageTemplate {
         ANIME_NOT_FOUND_BY_ID("Anime not fount by id (%s)."),
-        ANIME_NOT_FOUND_BY_TITLE_OR_ALTERNATIVE_NAMES("There is no anime named (%s).");
+        ANIME_NOT_FOUND_BY_TITLE_OR_ALTERNATIVE_NAMES("There is no anime named (%s)."),
+        DO_NOT_EXIST_ANY_ANIME_WITH_PRODUCERS("Do not exist any anime with producer named (%s).");
 
         private final String message;
     }

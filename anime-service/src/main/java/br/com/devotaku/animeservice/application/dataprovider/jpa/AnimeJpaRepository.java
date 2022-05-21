@@ -37,7 +37,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable     {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByProducersContainingIgnoreCase(String producerName, Pageable pageable);
+    Page<AnimeEntity> findByProducersIsLikeIgnoreCase(String producerName, Pageable pageable);
 
     /**
      * Retrieve all paginated anime of a specific {@link br.com.devotaku.animeservice.domain.entities.value.objects.Studio} ordered by score (descendent) and title (ascending)
