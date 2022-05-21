@@ -36,7 +36,7 @@ public record PageInfo(
         int lastElementPosition = (pageNumber + 1) * pageInterval + (pageNumber + 1);
         int firstElementPosition = lastElementPosition - pageInterval;
 
-        return new PageInfo(pageNumber, pageSize, pageInterval, lastElementPosition, firstElementPosition);
+        return new PageInfo(pageNumber, pageSize, pageInterval, firstElementPosition, lastElementPosition);
     }
 
     public static PageInfo createDefault() {
