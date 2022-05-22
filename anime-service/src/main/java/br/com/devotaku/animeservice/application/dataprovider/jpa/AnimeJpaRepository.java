@@ -96,11 +96,11 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
     /**
      * Retrieve all paginated anime of a specific <code>endedAt</code> date ordered by score (descendent) and title (ascending)
      *
-     * @param launchedAt {@link LocalDate}
+     * @param endedAt {@link LocalDate}
      * @param pageable   {@link LocalDate}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByEndedAt(LocalDate launchedAt, Pageable pageable);
+    Page<AnimeEntity> findByEndedAtEquals(LocalDate endedAt, Pageable pageable);
 
     /**
      * Retrieve all paginated anime of a specific {@link SourceType} ordered by score (descendent) and title (ascending)

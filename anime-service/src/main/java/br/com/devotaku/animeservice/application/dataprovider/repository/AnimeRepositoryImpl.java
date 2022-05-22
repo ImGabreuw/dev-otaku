@@ -170,7 +170,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var today = LocalDate.now();
 
         var endedAtTodaySearch = animeJpaRepository
-                .findAnimeEntitiesByEndedAt(today, page);
+                .findByEndedAtEquals(today, page);
 
         return endedAtTodaySearch
                 .stream()
