@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static br.com.devotaku.animeservice.shared.exceptions.AnimeNotFoundException.MessageTemplate.ANIME_NOT_FOUND_BY_PRODUCER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -74,7 +75,9 @@ class FindByProducerUseCaseTest {
 
             assertThatThrownBy(() -> underTest.execute(input))
                     .isInstanceOf(AnimeNotFoundException.class)
-                    .hasMessage("Do not exist any anime with producer named (%s).".formatted(StringUtils.reverse(producerName)));
+                    .hasMessage(
+                            ANIME_NOT_FOUND_BY_PRODUCER.getMessage().formatted(StringUtils.reverse(producerName))
+                    );
         });
     }
 

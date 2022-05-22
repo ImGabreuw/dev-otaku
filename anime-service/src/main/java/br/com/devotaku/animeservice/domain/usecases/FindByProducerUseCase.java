@@ -7,7 +7,7 @@ import br.com.devotaku.animeservice.shared.page.PageInfo;
 
 import java.util.List;
 
-import static br.com.devotaku.animeservice.shared.exceptions.AnimeNotFoundException.MessageTemplate.DO_NOT_EXIST_ANY_ANIME_WITH_PRODUCERS;
+import static br.com.devotaku.animeservice.shared.exceptions.AnimeNotFoundException.MessageTemplate.ANIME_NOT_FOUND_BY_PRODUCER;
 
 public record FindByProducerUseCase(
         AnimeRepository animeRepository
@@ -22,7 +22,7 @@ public record FindByProducerUseCase(
 
         if (result.isEmpty()) {
             throw new AnimeNotFoundException(
-                    DO_NOT_EXIST_ANY_ANIME_WITH_PRODUCERS.getMessage().formatted(producerName)
+                    ANIME_NOT_FOUND_BY_PRODUCER.getMessage().formatted(producerName)
             );
         }
 
