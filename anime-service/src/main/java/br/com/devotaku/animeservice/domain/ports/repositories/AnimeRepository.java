@@ -34,9 +34,9 @@ public interface AnimeRepository {
 
     List<Anime> findBySourceTypeManga(PageInfo pageInfo);
 
-    List<Anime> findBySourceTypeAsManhwa(PageInfo pageInfo);
+    List<Anime> findBySourceTypeManhwa(PageInfo pageInfo);
 
-    List<Anime> findBySourceTypeAsWebtoon(PageInfo pageInfo);
+    List<Anime> findBySourceTypeWebtoon(PageInfo pageInfo);
 
     List<Anime> findAllByGenres(List<Genre> genres, PageInfo pageInfo);
 

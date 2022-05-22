@@ -192,7 +192,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
     }
 
     @Override
-    public List<Anime> findBySourceTypeAsManhwa(PageInfo pageInfo) {
+    public List<Anime> findBySourceTypeManhwa(PageInfo pageInfo) {
         var page = pageInfo.toPageRequest();
 
         var sourceTypeManhwaSearch = animeJpaRepository
@@ -205,7 +205,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
     }
 
     @Override
-    public List<Anime> findBySourceTypeAsWebtoon(PageInfo pageInfo) {
+    public List<Anime> findBySourceTypeWebtoon(PageInfo pageInfo) {
         var page = pageInfo.toPageRequest();
 
         var sourceTypeWebtoonSearch = animeJpaRepository
