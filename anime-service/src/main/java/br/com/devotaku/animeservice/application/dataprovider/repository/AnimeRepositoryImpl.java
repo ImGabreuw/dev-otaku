@@ -120,7 +120,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
 
     @Override
     public List<Anime> findByStatusPublishing(PageInfo pageInfo) {
-        var page = pageInfo.toPageRequest();
+        var page = pageInfo.toSortedPageRequest();
 
         var statusPublishingSearch = animeJpaRepository
                 .findByStatusIsLike(PUBLISHING, page);
