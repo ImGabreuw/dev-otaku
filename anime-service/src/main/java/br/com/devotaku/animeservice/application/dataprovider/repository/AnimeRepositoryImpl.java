@@ -94,10 +94,10 @@ public class AnimeRepositoryImpl implements AnimeRepository {
 
     @Override
     public List<Anime> fetchTop(PageInfo pageInfo) {
-        var page = pageInfo.toPageRequest();
+        var page = pageInfo.toSortedPageRequest();
 
         var searchTop = animeJpaRepository
-                .findTopByOrderByScoreDesc(page);
+                .findAll(page);
 
         return searchTop
                 .stream()
