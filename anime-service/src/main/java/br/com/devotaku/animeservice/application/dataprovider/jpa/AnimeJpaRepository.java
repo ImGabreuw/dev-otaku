@@ -109,7 +109,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesBySource(SourceType source, Pageable pageable);
+    Page<AnimeEntity> findBySourceEquals(SourceType source, Pageable pageable);
 
     /**
      * Retrieve all paginated anime of a specific or a set of {@link Genre} ordered by score (descendent) and title (ascending)

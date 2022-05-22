@@ -183,7 +183,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var sourceTypeMangaSearch = animeJpaRepository
-                .findAnimeEntitiesBySource(MANGA, page);
+                .findBySourceEquals(MANGA, page);
 
         return sourceTypeMangaSearch
                 .stream()
@@ -193,10 +193,10 @@ public class AnimeRepositoryImpl implements AnimeRepository {
 
     @Override
     public List<Anime> findBySourceTypeManhwa(PageInfo pageInfo) {
-        var page = pageInfo.toPageRequest();
+        var page = pageInfo.toSortedPageRequest();
 
         var sourceTypeManhwaSearch = animeJpaRepository
-                .findAnimeEntitiesBySource(MANHWA, page);
+                .findBySourceEquals(MANHWA, page);
 
         return sourceTypeManhwaSearch
                 .stream()
@@ -206,10 +206,10 @@ public class AnimeRepositoryImpl implements AnimeRepository {
 
     @Override
     public List<Anime> findBySourceTypeWebtoon(PageInfo pageInfo) {
-        var page = pageInfo.toPageRequest();
+        var page = pageInfo.toSortedPageRequest();
 
         var sourceTypeWebtoonSearch = animeJpaRepository
-                .findAnimeEntitiesBySource(WEBTOON, page);
+                .findBySourceEquals(WEBTOON, page);
 
         return sourceTypeWebtoonSearch
                 .stream()
