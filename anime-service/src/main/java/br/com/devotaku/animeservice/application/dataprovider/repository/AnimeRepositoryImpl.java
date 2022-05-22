@@ -107,10 +107,10 @@ public class AnimeRepositoryImpl implements AnimeRepository {
 
     @Override
     public List<Anime> findByStatusFinished(PageInfo pageInfo) {
-        var page = pageInfo.toPageRequest();
+        var page = pageInfo.toSortedPageRequest();
 
         var statusFinishedSearch = animeJpaRepository
-                .findAnimeEntitiesByStatus(FINISHED, page);
+                .findByStatusIsLike(FINISHED, page);
 
         return statusFinishedSearch
                 .stream()
@@ -123,7 +123,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var statusPublishingSearch = animeJpaRepository
-                .findAnimeEntitiesByStatus(PUBLISHING, page);
+                .findByStatusIsLike(PUBLISHING, page);
 
         return statusPublishingSearch
                 .stream()
