@@ -1,17 +1,16 @@
 package br.com.devotaku.animeservice.shared.generators;
 
 import br.com.devotaku.animeservice.domain.entities.enums.Status;
+import br.com.devotaku.animeservice.shared.helper.RandomHelper;
 import com.github.javafaker.Faker;
+import lombok.NoArgsConstructor;
 
+import static lombok.AccessLevel.PRIVATE;
+
+@NoArgsConstructor(access = PRIVATE)
 public class StatusUtils {
 
     private static StatusUtils instance;
-
-    private final Faker faker;
-
-    private StatusUtils() {
-        this.faker = Faker.instance();
-    }
 
     public static StatusUtils getInstance() {
         if (instance == null) {
@@ -24,7 +23,7 @@ public class StatusUtils {
     public Status generateStatus() {
         var status = Status.values();
 
-        return status[faker.number().numberBetween(0, status.length - 1)];
+        return status[RandomHelper.number(0, status.length - 1)];
     }
 
 }
