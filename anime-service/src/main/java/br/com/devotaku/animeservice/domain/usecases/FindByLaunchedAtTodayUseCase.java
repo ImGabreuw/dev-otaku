@@ -6,12 +6,12 @@ import br.com.devotaku.animeservice.shared.page.PageInfo;
 
 import java.util.List;
 
-public record FindByLaunchedAtToday(
+public record FindByLaunchedAtTodayUseCase(
         AnimeRepository animeRepository
-) implements UseCase<FindByLaunchedAtToday.InputValues, FindByLaunchedAtToday.OutputValues> {
+) implements UseCase<FindByLaunchedAtTodayUseCase.InputValues, FindByLaunchedAtTodayUseCase.OutputValues> {
 
     @Override
-    public FindByLaunchedAtToday.OutputValues execute(FindByLaunchedAtToday.InputValues input) {
+    public FindByLaunchedAtTodayUseCase.OutputValues execute(FindByLaunchedAtTodayUseCase.InputValues input) {
         var pageInfo = input.pageInfo();
 
         return new OutputValues(

@@ -21,18 +21,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class FindByLaunchedAtTodayTest {
+class FindByLaunchedAtTodayUseCaseTest {
 
     @Autowired
     private AnimeRepository animeRepository;
 
-    private FindByLaunchedAtToday underTest;
+    private FindByLaunchedAtTodayUseCase underTest;
 
     @BeforeEach
     void setUp() {
         mockAnimeWithLaunchedAtToday().forEach(animeRepository::save);
 
-        underTest = new FindByLaunchedAtToday(animeRepository);
+        underTest = new FindByLaunchedAtTodayUseCase(animeRepository);
     }
 
     @DisplayName("Should execute FindByLaunchedAtToday")
@@ -40,7 +40,7 @@ class FindByLaunchedAtTodayTest {
     void shouldExecuteFindByLaunchedAtToday() {
         var page = PageInfo.createDefault();
 
-        var input = new FindByLaunchedAtToday.InputValues(page);
+        var input = new FindByLaunchedAtTodayUseCase.InputValues(page);
 
         var output = underTest.execute(input);
 
