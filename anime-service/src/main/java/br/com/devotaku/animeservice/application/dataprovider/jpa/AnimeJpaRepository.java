@@ -46,7 +46,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable   {@link Pageable}
      * @return {@link AnimeEntity}
      */
-    Page<AnimeEntity> findAnimeEntitiesByStudiosContainingIgnoreCase(String studioName, Pageable pageable);
+    Page<AnimeEntity> findByStudiosIsLikeIgnoreCase(String studioName, Pageable pageable);
 
     /**
      * Retrieve the top 10 anime

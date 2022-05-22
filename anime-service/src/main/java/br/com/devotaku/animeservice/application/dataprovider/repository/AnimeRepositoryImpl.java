@@ -84,7 +84,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var page = pageInfo.toPageRequest();
 
         var studioSearch = animeJpaRepository
-                .findAnimeEntitiesByStudiosContainingIgnoreCase(studioName, page);
+                .findByStudiosIsLikeIgnoreCase(studioName, page);
 
         return studioSearch
                 .stream()
