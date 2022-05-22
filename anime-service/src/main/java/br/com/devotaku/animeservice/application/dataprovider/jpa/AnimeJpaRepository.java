@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
 
@@ -28,6 +29,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable         {@link Pageable}
      * @return {@link AnimeEntity}
      */
+    @SuppressWarnings("SpringDataRepositoryMethodParametersInspection")
     Page<AnimeEntity> findDistinctByAlternativeNamesIsLikeIgnoreCase(String alternativeNames, Pageable pageable);
 
     /**
@@ -37,6 +39,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable     {@link Pageable}
      * @return {@link AnimeEntity}
      */
+    @SuppressWarnings("SpringDataRepositoryMethodParametersInspection")
     Page<AnimeEntity> findByProducersIsLikeIgnoreCase(String producerName, Pageable pageable);
 
     /**
@@ -46,6 +49,7 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @param pageable   {@link Pageable}
      * @return {@link AnimeEntity}
      */
+    @SuppressWarnings("SpringDataRepositoryMethodParametersInspection")
     Page<AnimeEntity> findByStudiosIsLikeIgnoreCase(String studioName, Pageable pageable);
 
     /**
@@ -119,6 +123,6 @@ public interface AnimeJpaRepository extends JpaRepository<AnimeEntity, Long> {
      * @return {@link AnimeEntity}
      */
     @SuppressWarnings("SpringDataRepositoryMethodParametersInspection")
-    Page<AnimeEntity> findAnimeEntitiesByGenres(String genres, Pageable pageable);
+    Page<AnimeEntity> findAllByGenresIn(Set<String> genres, Pageable pageable);
 
 }

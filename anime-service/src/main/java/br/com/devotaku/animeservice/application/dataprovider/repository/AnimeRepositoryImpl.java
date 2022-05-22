@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -218,11 +219,16 @@ public class AnimeRepositoryImpl implements AnimeRepository {
     }
 
     @Override
-    public List<Anime> findAllByGenres(List<Genre> genres, PageInfo pageInfo) {
-        var page = pageInfo.toPageRequest();
+    public List<Anime> findByGenres(Set<Genre> genres, PageInfo pageInfo) {
+        var page = pageInfo.toSortedPageRequest();
+
+        var genreNames = genres
+                .stream()
+                .map(Genre::toString)
+                .collect(Collectors.toSet());
 
         var genresSearch = animeJpaRepository
-                .findAnimeEntitiesByGenres(Genre.convertGenresToString(genres), page);
+                .findAllByGenresIn(genreNames, page);
 
         return genresSearch
                 .stream()

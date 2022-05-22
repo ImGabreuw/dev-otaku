@@ -7,6 +7,7 @@ import br.com.devotaku.animeservice.shared.page.PageInfo;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface AnimeRepository {
 
@@ -38,7 +39,7 @@ public interface AnimeRepository {
 
     List<Anime> findBySourceTypeWebtoon(PageInfo pageInfo);
 
-    List<Anime> findAllByGenres(List<Genre> genres, PageInfo pageInfo);
+    List<Anime> findByGenres(Set<Genre> genres, PageInfo pageInfo);
 
     Anime save(Anime anime);
 
