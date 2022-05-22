@@ -13,7 +13,11 @@ public class RandomHelper {
      * @param max inclusive
      */
     public static long number(long min, long max) {
-        return FAKER.number().numberBetween(min, ++max);
+        return FAKER.number().numberBetween(min, max + 1);
+    }
+
+    public static int number(int min, int max) {
+        return FAKER.number().numberBetween(min, max + 1);
     }
 
 }
