@@ -137,7 +137,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         var today = LocalDate.now();
 
         var launchedAtTodaySearch = animeJpaRepository
-                .findAnimeEntitiesByLaunchedAt(today, page);
+                .findByLaunchedAtEquals(today, page);
 
         return launchedAtTodaySearch
                 .stream()
@@ -152,7 +152,7 @@ public class AnimeRepositoryImpl implements AnimeRepository {
         List<AnimeEntity> intersection = new ArrayList<>();
 
         for (int month : season.getValueOfSeasonMonths()) {
-            var monthSearch = animeJpaRepository.findAnimeEntitiesByLaunchedAtMonthValue(month, page);
+            var monthSearch = animeJpaRepository.findByLaunchedAtMonthValue(month, page);
 
             intersection.addAll(monthSearch.toList());
         }
